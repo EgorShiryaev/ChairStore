@@ -1,5 +1,6 @@
-import 'package:chair_store/app_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../app_theme.dart';
 
 class ShadedTextField extends StatelessWidget {
   final String label;

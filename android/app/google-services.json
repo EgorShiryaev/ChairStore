@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "577901890618",
+    "project_id": "chair-store-c1400",
+    "storage_bucket": "chair-store-c1400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577901890618:android:3a895c09d1834641277903",
+        "android_client_info": {
+          "package_name": "com.example.chair_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577901890618-sjugc23om03v8beepo051pi6ff7k1jbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvq3a0ze5tZ9FCk79iCElRl_xk6yvJYFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577901890618-sjugc23om03v8beepo051pi6ff7k1jbv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "577901890618-2m7gngmuvt1gnq04694quradnqv4jb96.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chairStore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

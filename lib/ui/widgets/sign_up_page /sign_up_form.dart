@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../../app_theme.dart';
-import '../../pages/sign_up_page.dart';
-import '../filled_button.dart';
+import '../../pages/login_page.dart';
 import '../fields/obscured_text_field.dart';
 import '../fields/shaded_text_field.dart';
+import '../filled_button.dart';
 import '../text_button_with_icon.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -20,11 +22,10 @@ class SignUpFormState extends State<SignUpForm> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  
+
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
   final confirmPasswordFocusNode = FocusNode();
-
 
   @override
   void dispose() {
@@ -75,7 +76,7 @@ class SignUpFormState extends State<SignUpForm> {
   }
 
   void navigateToLoginPage() {
-    Navigator.pushReplacementNamed(context, SignUpPage.routeName);
+    unawaited(Navigator.pushReplacementNamed(context, LoginPage.routeName));
   }
 
   void submitEmailField(_) {

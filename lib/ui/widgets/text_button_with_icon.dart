@@ -13,24 +13,19 @@ class TextButtonWithIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        InkWell(
-          onTap: onPress,
-          child: Padding(
-            padding: const EdgeInsets.all(4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(text),
-                const SizedBox(width: 4),
-                Icon(icon, color: Theme.of(context).colorScheme.tertiary)
-              ],
-            ),
-          ),
+    return InkWell(
+      onTap: onPress,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(text),
+            const SizedBox(width: 4),
+            Icon(icon, color: Theme.of(context).colorScheme.tertiary)
+          ],
         ),
-      ],
+      ),
     );
   }
 }

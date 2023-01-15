@@ -24,9 +24,9 @@ class AppTheme {
 
   static const formElementsOffset = 20.0;
 
-  static const formButtonOffset = 30.0;
+  static const formButtonOffset = 20.0;
 
-  static final fieldBorderRadius = BorderRadius.circular(4);
+  static final borderRadius = BorderRadius.circular(4);
 
   static final filledButtonBorderRadius = BorderRadius.circular(20);
 
@@ -35,6 +35,8 @@ class AppTheme {
     fontWeight: FontWeight.bold,
     color: colorScheme.onTertiary,
   );
+
+  static const elevation = 10.0;
 
   static final theme = ThemeData(
     appBarTheme: AppBarTheme(

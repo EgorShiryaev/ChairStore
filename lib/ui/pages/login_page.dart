@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,6 +6,7 @@ import '../cubits/auth_cubit/auth_cubit.dart';
 import '../cubits/auth_cubit/auth_state.dart';
 import '../widgets/loading_mask.dart';
 import '../widgets/login_page/login_form.dart';
+import '../widgets/modals/error_modal.dart';
 import '../widgets/page_title.dart';
 import 'home_tabs_page.dart';
 
@@ -21,9 +20,9 @@ class LoginPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SuccessAuthState) {
-          unawaited(
-            Navigator.pushReplacementNamed(context, HomeTabsPage.routeName),
-          );
+          Navigator.pushReplacementNamed(context, HomeTabsPage.routeName);
+        } else if (state is ErrorAuthState) {
+          ErrorModal.show(context, message: state.message);
         }
       },
       builder: (context, state) {

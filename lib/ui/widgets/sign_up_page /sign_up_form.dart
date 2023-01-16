@@ -1,8 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app_theme.dart';
+import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../pages/login_page.dart';
 import '../fields/obscured_text_field.dart';
 import '../fields/shaded_text_field.dart';
@@ -61,9 +61,10 @@ class SignUpFormState extends State<SignUpForm> {
 
   String? confirmPasswordValidator(String? value) {
     final currentValue = value ?? '';
+    final passwordIsMatch = currentValue == passwordController.text;
     if (currentValue.isEmpty) {
       return 'Please enter your password';
-    } else if (currentValue != passwordController.text) {
+    } else if (!passwordIsMatch) {
       return 'Passwords do not match';
     }
     return null;
@@ -71,12 +72,15 @@ class SignUpFormState extends State<SignUpForm> {
 
   void signUp() {
     if (formKey.currentState!.validate()) {
-      formKey.currentState!.save();
+      BlocProvider.of<AuthCubit>(context).signUp(
+        emailController.text,
+        passwordController.text,
+      );
     }
   }
 
   void navigateToLoginPage() {
-    unawaited(Navigator.pushReplacementNamed(context, LoginPage.routeName));
+    Navigator.pushReplacementNamed(context, LoginPage.routeName);
   }
 
   void submitEmailField(_) {

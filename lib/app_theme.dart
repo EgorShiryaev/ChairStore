@@ -41,7 +41,7 @@ class AppTheme {
   static final theme = ThemeData(
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: colorScheme.tertiary,
-      refreshBackgroundColor: const Color.fromRGBO(255, 255, 255, 0.7)
+      refreshBackgroundColor: const Color.fromRGBO(255, 255, 255, 0.7),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,

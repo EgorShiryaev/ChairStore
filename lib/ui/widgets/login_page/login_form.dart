@@ -1,8 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app_theme.dart';
+import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../pages/sign_up_page.dart';
 import '../fields/obscured_text_field.dart';
 import '../fields/shaded_text_field.dart';
@@ -57,12 +57,15 @@ class LoginFormState extends State<LoginForm> {
 
   void login() {
     if (formKey.currentState!.validate()) {
-      formKey.currentState!.save();
+      BlocProvider.of<AuthCubit>(context).login(
+        emailController.text,
+        passwordController.text,
+      );
     }
   }
 
   void navigateToSignUpPage() {
-    unawaited(Navigator.pushReplacementNamed(context, SignUpPage.routeName));
+    Navigator.pushReplacementNamed(context, SignUpPage.routeName);
   }
 
   void submitEmailField(_) {

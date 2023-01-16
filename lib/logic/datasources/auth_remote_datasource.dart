@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user_data.dart';
 
 class AuthRemoteDatasource {
@@ -11,6 +12,8 @@ class AuthRemoteDatasource {
         super();
 
   Future<UserCredential> login(UserData data) {
+    log('${data.email}: ${data.password}');
+
     return _service.signInWithEmailAndPassword(
       email: data.email,
       password: data.password,
@@ -18,6 +21,8 @@ class AuthRemoteDatasource {
   }
 
   Future<UserCredential> signUp(UserData data) {
+    log('${data.email}: ${data.password}');
+
     return _service.createUserWithEmailAndPassword(
       email: data.email,
       password: data.password,

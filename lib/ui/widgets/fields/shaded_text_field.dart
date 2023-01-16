@@ -33,6 +33,7 @@ class ShadedTextField extends StatelessWidget {
       color: Theme.of(context).colorScheme.surface,
       borderRadius: AppTheme.borderRadius,
       child: TextFormField(
+        controller: controller,
         focusNode: focusNode,
         keyboardType: keyboardType,
         obscureText: obscureText ?? false,

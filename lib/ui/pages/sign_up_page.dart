@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../../app_theme.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
@@ -21,8 +24,10 @@ class SignUpPage extends StatelessWidget {
       listener: (context, state) {
         if (state is SuccessAuthState) {
           Navigator.pushReplacementNamed(context, HomeTabsPage.routeName);
+          Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
         } else if (state is ErrorAuthState) {
           ErrorModal.show(context, message: state.message);
+          FlutterNativeSplash.remove();
         }
       },
       builder: (context, state) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app_theme.dart';
+import '../../themes/filled_button_theme.dart';
 
 class FilledButton extends StatelessWidget {
   final String label;
@@ -13,18 +13,19 @@ class FilledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final filledButtonTheme = Theme.of(context).extension<FilledButtonTheme>()!;
     return Material(
-      elevation: AppTheme.elevation,
-      borderRadius: AppTheme.filledButtonBorderRadius,
+      elevation: filledButtonTheme.elevation!,
+      borderRadius: filledButtonTheme.borderRadius,
       child: InkWell(
         splashColor: Theme.of(context).colorScheme.onTertiary,
-        borderRadius: AppTheme.filledButtonBorderRadius,
+        borderRadius: filledButtonTheme.borderRadius,
         onTap: onPress,
         child: Container(
           height: 44,
           width: double.maxFinite,
           decoration: BoxDecoration(
-            borderRadius: AppTheme.filledButtonBorderRadius,
+            borderRadius: filledButtonTheme.borderRadius,
             gradient: const LinearGradient(
               colors: [
                 Color(0xffA95EFA),
@@ -37,7 +38,7 @@ class FilledButton extends StatelessWidget {
           child: Center(
             child: Text(
               label.toUpperCase(),
-              style: AppTheme.filledButtonTexStyle,
+              style: filledButtonTheme.labelStyle,
             ),
           ),
         ),

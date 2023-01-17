@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../app_theme.dart';
+import '../../../themes/form_theme.dart';
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../pages/sign_up_page.dart';
 import '../fields/obscured_text_field.dart';
@@ -79,6 +79,7 @@ class LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    final formTheme = Theme.of(context).extension<FormTheme>()!;
     return Form(
       key: formKey,
       child: Column(
@@ -93,7 +94,7 @@ class LoginFormState extends State<LoginForm> {
             validator: emailValidator,
             submit: submitEmailField,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           ObscuredTextField(
             label: 'Password',
             keyboardType: TextInputType.visiblePassword,
@@ -103,18 +104,17 @@ class LoginFormState extends State<LoginForm> {
             validator: passwordValidator,
             submit: submitPasswordField,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           TextButtonWithIcon(
             text: 'Don`t have an account?',
             icon: Icons.arrow_right_alt,
             onPress: navigateToSignUpPage,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           FilledButton(
             label: 'Login',
             onPress: login,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+
+import '../widgets/home_navigation_panel.dart';
 
 class HomeTabsPage extends StatefulWidget {
   const HomeTabsPage({super.key});
@@ -11,15 +12,24 @@ class HomeTabsPage extends StatefulWidget {
 }
 
 class _HomeTabsPageState extends State<HomeTabsPage> {
-  
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
-        child: Text('Home'),
-      ),
+    return Stack(
+      children: [
+        const Scaffold(
+          body: Center(
+            child: Text('Home'),
+          ),
+        ),
+        SafeArea(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: HomeNavigationPanel(
+              onSelect: (int) {},
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

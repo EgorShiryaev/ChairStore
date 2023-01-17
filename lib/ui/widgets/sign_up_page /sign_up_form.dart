@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../app_theme.dart';
+import '../../../themes/form_theme.dart';
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../pages/login_page.dart';
 import '../fields/obscured_text_field.dart';
@@ -98,6 +98,7 @@ class SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
+    final formTheme = Theme.of(context).extension<FormTheme>()!;
     return Form(
       key: formKey,
       child: Column(
@@ -112,7 +113,7 @@ class SignUpFormState extends State<SignUpForm> {
             validator: emailValidator,
             submit: submitEmailField,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           ObscuredTextField(
             label: 'Password',
             keyboardType: TextInputType.visiblePassword,
@@ -122,7 +123,7 @@ class SignUpFormState extends State<SignUpForm> {
             validator: passwordValidator,
             submit: submitPasswordField,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           ObscuredTextField(
             label: 'Confirm password',
             keyboardType: TextInputType.visiblePassword,
@@ -132,18 +133,17 @@ class SignUpFormState extends State<SignUpForm> {
             validator: confirmPasswordValidator,
             submit: submitConfirmPasswordField,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           TextButtonWithIcon(
             text: 'Already have an account?',
             icon: Icons.arrow_right_alt,
             onPress: navigateToLoginPage,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           FilledButton(
             label: 'Sign up',
             onPress: signUp,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
         ],
       ),
     );

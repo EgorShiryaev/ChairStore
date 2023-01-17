@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../app_theme.dart';
+import '../../../themes/shaded_text_field_theme.dart';
 
 class ShadedTextField extends StatelessWidget {
   final String label;
@@ -28,10 +28,12 @@ class ShadedTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shadedTextFieldTheme =
+        Theme.of(context).extension<ShadedTextFieldTheme>()!;
     return Material(
-      elevation: AppTheme.elevation,
+      elevation: shadedTextFieldTheme.elevation!,
       color: Theme.of(context).colorScheme.surface,
-      borderRadius: AppTheme.borderRadius,
+      borderRadius: shadedTextFieldTheme.borderRadius,
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,

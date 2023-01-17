@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'filled_button_theme.dart';
+import 'form_theme.dart';
+import 'home_navigation_panel_theme.dart';
+import 'list_view_theme.dart';
+import 'shaded_text_field_theme.dart';
+
 class AppTheme {
   static const colorScheme = ColorScheme(
     brightness: Brightness.light,
@@ -18,25 +24,7 @@ class AppTheme {
     onTertiary: Color(0xffffffff),
   );
 
-  static const labelColor = Color(0xff9B9B9B);
-
-  static const listViewPadding = EdgeInsets.fromLTRB(16, 16, 16, 0);
-
-  static const formElementsOffset = 20.0;
-
-  static const formButtonOffset = 20.0;
-
-  static final borderRadius = BorderRadius.circular(4);
-
-  static final filledButtonBorderRadius = BorderRadius.circular(20);
-
-  static final filledButtonTexStyle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    color: colorScheme.onTertiary,
-  );
-
-  static const elevation = 10.0;
+  static const _defaultPadding = 16.0;
 
   static final theme = ThemeData(
     progressIndicatorTheme: ProgressIndicatorThemeData(
@@ -79,10 +67,47 @@ class AppTheme {
       border: InputBorder.none,
       labelStyle: const TextStyle(
         fontSize: 14,
-        color: labelColor,
+        color: Color(0xff9B9B9B),
       ),
       contentPadding: const EdgeInsets.all(14),
     ),
     colorScheme: colorScheme,
+    navigationBarTheme: const NavigationBarThemeData(
+      backgroundColor: Colors.white,
+      height: 60,
+    ),
+    extensions: <ThemeExtension<dynamic>>[
+      FilledButtonTheme(
+        borderRadius: BorderRadius.circular(20),
+        labelStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: colorScheme.onTertiary,
+        ),
+        elevation: 10,
+      ),
+      FormTheme(
+        padding: const EdgeInsets.only(bottom: 30),
+        paddingBetweenElements: 20,
+      ),
+      ShadedTextFieldTheme(
+        borderRadius: BorderRadius.circular(4),
+        elevation: 10,
+      ),
+      ListViewTheme(
+        padding: const EdgeInsets.fromLTRB(
+          _defaultPadding,
+          _defaultPadding,
+          _defaultPadding,
+          0,
+        ),
+      ),
+      HomeNavigationPanelTheme(
+        elevation: 10,
+        radius: BorderRadius.circular(20),
+        margin: const EdgeInsets.symmetric(horizontal: _defaultPadding),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      )
+    ],
   );
 }

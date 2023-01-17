@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import '../../app_theme.dart';
+import '../../themes/form_theme.dart';
+import '../../themes/list_view_theme.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
 import '../cubits/auth_cubit/auth_state.dart';
 import '../widgets/loading_mask.dart';
@@ -20,6 +21,8 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formTheme = Theme.of(context).extension<FormTheme>()!;
+    final listViewTheme = Theme.of(context).extension<ListViewTheme>()!;
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SuccessAuthState) {
@@ -35,14 +38,14 @@ class SignUpPage extends StatelessWidget {
           children: [
             Scaffold(
               body: SingleChildScrollView(
-                padding: AppTheme.listViewPadding,
+                padding: listViewTheme.padding,
                 child: SafeArea(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      PageTitle(title: 'Sign up'),
-                      SizedBox(height: AppTheme.formElementsOffset),
-                      SignUpForm()
+                    children: [
+                      const PageTitle(title: 'Sign up'),
+                      SizedBox(height: formTheme.paddingBetweenElements),
+                      const SignUpForm()
                     ],
                   ),
                 ),

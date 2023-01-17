@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app_theme.dart';
+import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../pages/sign_up_page.dart';
-import '../filled_button.dart';
 import '../fields/obscured_text_field.dart';
 import '../fields/shaded_text_field.dart';
+import '../filled_button.dart';
 import '../text_button_with_icon.dart';
 
 class LoginForm extends StatefulWidget {
@@ -19,7 +21,7 @@ class LoginFormState extends State<LoginForm> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
+
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
 
@@ -55,7 +57,10 @@ class LoginFormState extends State<LoginForm> {
 
   void login() {
     if (formKey.currentState!.validate()) {
-      formKey.currentState!.save();
+      BlocProvider.of<AuthCubit>(context).login(
+        emailController.text,
+        passwordController.text,
+      );
     }
   }
 

@@ -39,6 +39,10 @@ class AppTheme {
   static const elevation = 10.0;
 
   static final theme = ThemeData(
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: colorScheme.tertiary,
+      refreshBackgroundColor: const Color.fromRGBO(255, 255, 255, 0.7),
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
       foregroundColor: colorScheme.primary,

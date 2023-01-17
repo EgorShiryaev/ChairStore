@@ -1,5 +1,6 @@
-import 'package:chair_store/app_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../app_theme.dart';
 
 class ShadedTextField extends StatelessWidget {
   final String label;
@@ -32,6 +33,7 @@ class ShadedTextField extends StatelessWidget {
       color: Theme.of(context).colorScheme.surface,
       borderRadius: AppTheme.borderRadius,
       child: TextFormField(
+        controller: controller,
         focusNode: focusNode,
         keyboardType: keyboardType,
         obscureText: obscureText ?? false,

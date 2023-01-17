@@ -11,3 +11,5 @@ class ErrorAuthState extends AuthState {
 
   ErrorAuthState({required this.message});
 }
+
+class UnAuthState extends AuthState {}

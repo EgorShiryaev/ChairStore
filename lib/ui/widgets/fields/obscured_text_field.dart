@@ -1,5 +1,6 @@
-import 'package:chair_store/ui/widgets/fields/shaded_text_field.dart';
 import 'package:flutter/material.dart';
+
+import 'shaded_text_field.dart';
 
 class ObscuredTextField extends StatefulWidget {
   final String label;

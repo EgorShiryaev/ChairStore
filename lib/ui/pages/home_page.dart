@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../themes/list_view_theme.dart';
+import '../widgets/home_page/product_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,6 +44,7 @@ class _HomePageState extends State<HomePage> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
+                  SizedBox(height: listViewTheme.paddingBetweenElements / 2),
                   Text(
                     'Recommended for You',
                     style: Theme.of(context).textTheme.headlineMedium,
@@ -53,17 +57,18 @@ class _HomePageState extends State<HomePage> {
           SliverPadding(
             padding: listViewTheme.padding,
             sliver: SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 160,
                 mainAxisSpacing: listViewTheme.paddingBetweenElements,
                 crossAxisSpacing: listViewTheme.paddingBetweenElements,
+                childAspectRatio: 2 / 3,
               ),
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  return Container(
-                    alignment: Alignment.center,
-                    color: Colors.primaries[(index % 9)],
-                    child: Text('grid item $index'),
+                  return const ProductCard(
+                    imageName: 'wood_frame',
+                    price: 1600,
+                    title: 'Wood Frame',
                   );
                 },
                 childCount: 20,

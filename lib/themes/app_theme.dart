@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'filled_button_theme.dart';
 import 'form_theme.dart';
 import 'list_view_theme.dart';
+import 'product_card_theme.dart';
 import 'shaded_navigation_panel_selected_item_theme.dart';
 import 'shaded_navigation_panel_theme.dart';
 import 'shaded_navigation_panel_unselected_item_theme.dart';
@@ -100,8 +101,11 @@ class AppTheme {
         size: 24,
       ),
       systemOverlayStyle: SystemUiOverlayStyle.dark,
-      shape: Border(
-        bottom: BorderSide(color: Color(0xffF3F6F8), width: 1),
+      shape: const Border(
+        bottom: BorderSide(
+          color: Color(0xffF3F6F8),
+          width: 1,
+        ),
       ),
     ),
     scaffoldBackgroundColor: colorScheme.background,
@@ -183,7 +187,22 @@ class AppTheme {
         ),
         paddingBetweenElements: 20,
       ),
-      _shadedNavigationPanelTheme
+      _shadedNavigationPanelTheme,
+      ProductCardTheme(
+        backgroundColor: const Color(0xffF3F6F8),
+        titleStyle: TextStyle(
+          fontSize: 16,
+          color: colorScheme.primary,
+          fontWeight: FontWeight.bold,
+          letterSpacing: -0.4,
+        ),
+        subtitleStyle: TextStyle(
+          fontSize: 14,
+          color: colorScheme.primary,
+          letterSpacing: -0.4,
+        ),
+        radius: BorderRadius.circular(32),
+      )
     ],
   );
 }

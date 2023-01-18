@@ -34,14 +34,14 @@ class ShadedNavigationPanelItem extends StatelessWidget {
         child: isSelected
             ? ShadedNavigationPanelSelectedItem(
                 icon: AssetIcon(
-                  name: assetIconName,
+                  iconName: assetIconName,
                   color: selectedItemTheme.contentColor,
                 ),
                 label: label,
               )
             : ShadedNavigationPanelUnselectedItem(
                 icon: AssetIcon(
-                  name: assetIconName,
+                  iconName: assetIconName,
                   color: unselectedItemTheme.contentColor,
                 ),
               ),

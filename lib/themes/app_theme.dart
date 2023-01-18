@@ -1,10 +1,12 @@
+import 'package:chair_store/themes/shaded_navigation_panel_unselected_item_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'filled_button_theme.dart';
 import 'form_theme.dart';
-import 'home_navigation_panel_theme.dart';
 import 'list_view_theme.dart';
+import 'shaded_navigation_panel_selected_item_theme.dart';
+import 'shaded_navigation_panel_theme.dart';
 import 'shaded_text_field_theme.dart';
 
 class AppTheme {
@@ -14,17 +16,37 @@ class AppTheme {
     onPrimary: Color(0xffffffff),
     secondary: Color(0xffffffff),
     onSecondary: Color(0xff171717),
-    error: Color(0xffFF0000),
+    error: Color(0xffff0000),
     onError: Color(0xffffffff),
     background: Color(0xffffffff),
     onBackground: Color(0xff171717),
     surface: Color(0xffffffff),
     onSurface: Color(0xff171717),
-    tertiary: Color(0xffA95EFA),
+    tertiary: Color(0xffa95efa),
     onTertiary: Color(0xffffffff),
+    shadow: Color(0x40000000),
   );
 
   static const _defaultPadding = 16.0;
+
+  static final _defaultBoxShadow = BoxShadow(
+    color: colorScheme.shadow,
+    offset: const Offset(0, 4),
+    blurRadius: 4,
+  );
+
+  static const _defaultGradient = LinearGradient(
+    colors: [
+      Color(0xffA95EFA),
+      Color(0xff8A49F7),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static final _defaultButtonBorderRadius = BorderRadius.circular(20);
+
+  static const _defaultIconColor = Color(0xff171717);
 
   static final theme = ThemeData(
     progressIndicatorTheme: ProgressIndicatorThemeData(
@@ -76,15 +98,21 @@ class AppTheme {
       backgroundColor: Colors.white,
       height: 60,
     ),
+    iconTheme: const IconThemeData(
+      color: _defaultIconColor,
+      size: 24,
+    ),
     extensions: <ThemeExtension<dynamic>>[
       FilledButtonTheme(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: _defaultButtonBorderRadius,
         labelStyle: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: colorScheme.onTertiary,
         ),
-        elevation: 10,
+        boxShadow: _defaultBoxShadow,
+        backgroundGradient: _defaultGradient,
+        height: 44,
       ),
       FormTheme(
         padding: const EdgeInsets.only(bottom: 30),
@@ -92,7 +120,7 @@ class AppTheme {
       ),
       ShadedTextFieldTheme(
         borderRadius: BorderRadius.circular(4),
-        elevation: 10,
+        boxShadow: _defaultBoxShadow,
       ),
       ListViewTheme(
         padding: const EdgeInsets.fromLTRB(
@@ -102,12 +130,38 @@ class AppTheme {
           0,
         ),
       ),
-      HomeNavigationPanelTheme(
-        elevation: 10,
+      ShadedNavigationPanelTheme(
+        boxShadow: _defaultBoxShadow,
         radius: BorderRadius.circular(20),
-        margin: const EdgeInsets.symmetric(horizontal: _defaultPadding),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      )
+        margin: const EdgeInsets.fromLTRB(
+          _defaultPadding,
+          0,
+          _defaultPadding,
+          _defaultPadding,
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 10,
+        ),
+        itemContentPadding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 12,
+        ),
+        itemBorderRadius: _defaultButtonBorderRadius,
+        selectedItemTheme: ShadedNavigationPanelSelectedItemTheme(
+          backgroundGradient: _defaultGradient,
+          contentColor: const Color(0xffffffff),
+          labelStyle: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            letterSpacing: -0.6,
+          ),
+          paddingBetweenIconAndLabel: 12,
+        ),
+        unselectedItemTheme: ShadedNavigationPanelUnselectedItemTheme(
+          contentColor: _defaultIconColor,
+        ),
+      ),
     ],
   );
 }

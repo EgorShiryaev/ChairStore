@@ -30,6 +30,8 @@ class SignUpPage extends StatelessWidget {
           Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
         } else if (state is ErrorAuthState) {
           ErrorModal.show(context, message: state.message);
+        }
+        if (state is ErrorAuthState || state is UnAuthState) {
           FlutterNativeSplash.remove();
         }
       },

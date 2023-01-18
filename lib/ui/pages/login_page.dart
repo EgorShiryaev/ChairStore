@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
                 padding: listViewTheme.padding,
                 child: SafeArea(
                   child: Padding(
-                    padding: formTheme.padding!,
+                    padding: formTheme.padding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

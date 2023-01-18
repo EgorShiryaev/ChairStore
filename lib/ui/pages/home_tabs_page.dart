@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/home_navigation_panel.dart';
+import '../../logic/models/navigation_tab_item.dart';
+import '../widgets/shaded_navigation_panel/shaded_navigation_panel.dart';
 
 class HomeTabsPage extends StatefulWidget {
   const HomeTabsPage({super.key});
@@ -12,24 +13,30 @@ class HomeTabsPage extends StatefulWidget {
 }
 
 class _HomeTabsPageState extends State<HomeTabsPage> {
+  int selectedIndex = 0;
+
+  void selectNewIndex(int newSelectedIndex) {
+    setState(() {
+      selectedIndex = newSelectedIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const Scaffold(
-          body: Center(
-            child: Text('Home'),
-          ),
-        ),
-        SafeArea(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: HomeNavigationPanel(
-              onSelect: (int) {},
-            ),
-          ),
-        ),
-      ],
+    return Scaffold(
+      body: const Center(
+        child: Text('Home'),
+      ),
+      bottomNavigationBar: ShadedNavigationPanel(
+        onSelect: selectNewIndex,
+        selectedIndex: selectedIndex,
+        tabs: [
+          NavigationTabItem(iconName: 'home', label: 'Home'),
+          NavigationTabItem(iconName: 'search', label: 'Search'),
+          NavigationTabItem(iconName: 'cart', label: 'Cart'),
+          NavigationTabItem(iconName: 'profile', label: 'Profile'),
+        ],
+      ),
     );
   }
 }

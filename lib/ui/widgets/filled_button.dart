@@ -14,32 +14,22 @@ class FilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final filledButtonTheme = Theme.of(context).extension<FilledButtonTheme>()!;
-    return Material(
-      elevation: filledButtonTheme.elevation!,
+    return InkWell(
+      splashColor: Theme.of(context).colorScheme.onTertiary,
       borderRadius: filledButtonTheme.borderRadius,
-      child: InkWell(
-        splashColor: Theme.of(context).colorScheme.onTertiary,
-        borderRadius: filledButtonTheme.borderRadius,
-        onTap: onPress,
-        child: Container(
-          height: 44,
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-            borderRadius: filledButtonTheme.borderRadius,
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xffA95EFA),
-                Color(0xff8A49F7),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Center(
-            child: Text(
-              label.toUpperCase(),
-              style: filledButtonTheme.labelStyle,
-            ),
+      onTap: onPress,
+      child: Container(
+        height: filledButtonTheme.height,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          borderRadius: filledButtonTheme.borderRadius,
+          gradient: filledButtonTheme.backgroundGradient,
+          boxShadow: [filledButtonTheme.boxShadow],
+        ),
+        child: Center(
+          child: Text(
+            label.toUpperCase(),
+            style: filledButtonTheme.labelStyle,
           ),
         ),
       ),

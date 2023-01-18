@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 class ShadedTextFieldTheme extends ThemeExtension<ShadedTextFieldTheme> {
-  final BorderRadius? borderRadius;
-  final double? elevation;
+  final BorderRadius borderRadius;
+  final BoxShadow boxShadow;
 
   ShadedTextFieldTheme({
     required this.borderRadius,
-    required this.elevation,
+    required this.boxShadow,
   });
 
   @override
   ThemeExtension<ShadedTextFieldTheme> copyWith({
     BorderRadius? borderRadius,
     double? elevation,
+    BoxShadow? boxShadow,
+    Color? shadowColor,
   }) {
     return ShadedTextFieldTheme(
       borderRadius: borderRadius ?? this.borderRadius,
-      elevation: elevation ?? this.elevation,
+      boxShadow: boxShadow ?? this.boxShadow,
     );
   }
 
@@ -29,8 +31,8 @@ class ShadedTextFieldTheme extends ThemeExtension<ShadedTextFieldTheme> {
       return this;
     }
     return ShadedTextFieldTheme(
-      borderRadius: BorderRadius.lerp(borderRadius, other.borderRadius, t),
-      elevation: elevation ?? other.elevation ?? t,
+      borderRadius: BorderRadius.lerp(borderRadius, other.borderRadius, t)!,
+      boxShadow: BoxShadow.lerp(boxShadow, other.boxShadow, t)!,
     );
   }
 }

@@ -30,10 +30,12 @@ class ShadedTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final shadedTextFieldTheme =
         Theme.of(context).extension<ShadedTextFieldTheme>()!;
-    return Material(
-      elevation: shadedTextFieldTheme.elevation!,
-      color: Theme.of(context).colorScheme.surface,
-      borderRadius: shadedTextFieldTheme.borderRadius,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        boxShadow: [shadedTextFieldTheme.boxShadow],
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: shadedTextFieldTheme.borderRadius,
+      ),
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,

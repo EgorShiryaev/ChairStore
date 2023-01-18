@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FormTheme extends ThemeExtension<FormTheme> {
-  final double? paddingBetweenElements;
-  final EdgeInsets? padding;
+  final double paddingBetweenElements;
+  final EdgeInsets padding;
 
   FormTheme({
     required this.paddingBetweenElements,
@@ -12,10 +12,10 @@ class FormTheme extends ThemeExtension<FormTheme> {
   @override
   ThemeExtension<FormTheme> copyWith({
     double? paddingBetweenElements,
-    EdgeInsets? margin,
+    EdgeInsets? padding,
   }) {
     return FormTheme(
-      padding: margin ?? this.padding,
+      padding: padding ?? this.padding,
       paddingBetweenElements:
           paddingBetweenElements ?? this.paddingBetweenElements,
     );
@@ -30,9 +30,8 @@ class FormTheme extends ThemeExtension<FormTheme> {
       return this;
     }
     return FormTheme(
-      padding: EdgeInsets.lerp(padding, other.padding, t),
-      paddingBetweenElements:
-          paddingBetweenElements ?? other.paddingBetweenElements ?? t,
+      padding: EdgeInsets.lerp(padding, other.padding, t)!,
+      paddingBetweenElements: paddingBetweenElements,
     );
   }
 }

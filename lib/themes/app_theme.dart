@@ -1,4 +1,5 @@
-import 'package:chair_store/themes/shaded_navigation_panel_unselected_item_theme.dart';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,7 +8,10 @@ import 'form_theme.dart';
 import 'list_view_theme.dart';
 import 'shaded_navigation_panel_selected_item_theme.dart';
 import 'shaded_navigation_panel_theme.dart';
+import 'shaded_navigation_panel_unselected_item_theme.dart';
 import 'shaded_text_field_theme.dart';
+
+final _windowPadding = MediaQueryData.fromWindow(ui.window).padding;
 
 class AppTheme {
   static const colorScheme = ColorScheme(
@@ -28,6 +32,39 @@ class AppTheme {
   );
 
   static const _defaultPadding = 16.0;
+
+  static final _shadedNavigationPanelTheme = ShadedNavigationPanelTheme(
+    boxShadow: _defaultBoxShadow,
+    radius: BorderRadius.circular(20),
+    margin: const EdgeInsets.symmetric(
+      horizontal: _defaultPadding,
+      vertical: 8,
+    ),
+    padding: const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 10,
+    ),
+    itemContentPadding: const EdgeInsets.symmetric(
+      vertical: 8,
+      horizontal: 12,
+    ),
+    itemBorderRadius: _defaultButtonBorderRadius,
+    selectedItemTheme: ShadedNavigationPanelSelectedItemTheme(
+      backgroundGradient: _defaultGradient,
+      contentColor: const Color(0xffffffff),
+      labelStyle: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+        letterSpacing: -0.6,
+      ),
+      paddingBetweenIconAndLabel: 12,
+    ),
+    unselectedItemTheme: ShadedNavigationPanelUnselectedItemTheme(
+      contentColor: _defaultIconColor,
+    ),
+    backgroundColor: const Color(0xffffffff),
+    height: 60,
+  );
 
   static final _defaultBoxShadow = BoxShadow(
     color: colorScheme.shadow,
@@ -63,23 +100,41 @@ class AppTheme {
         size: 24,
       ),
       systemOverlayStyle: SystemUiOverlayStyle.dark,
+      shape: Border(
+        bottom: BorderSide(color: Color(0xffF3F6F8), width: 1),
+      ),
     ),
     scaffoldBackgroundColor: colorScheme.background,
     textTheme: TextTheme(
-      // displayLarge = displayLarge ?? headline1,
       displayMedium: TextStyle(
         fontSize: 36,
         color: colorScheme.primary,
         fontWeight: FontWeight.bold,
       ),
+      headlineMedium: TextStyle(
+        fontSize: 24,
+        color: colorScheme.primary,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 18,
+        color: colorScheme.primary,
+        fontWeight: FontWeight.bold,
+        letterSpacing: -0.4,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 14,
+        color: colorScheme.primary,
+        letterSpacing: -0.4,
+      ),
+      //  displayLarge = displayLarge ?? headline1,
       //  displaySmall = displaySmall ?? headline3,
-      //  headlineMedium = headlineMedium ?? headline4,
+      //  headlineLarge =  headlineLarge ?? headline4,
       //  headlineSmall = headlineSmall ?? headline5,
       //  titleLarge = titleLarge ?? headline6,
-      //  titleMedium = titleMedium ?? subtitle1,
       //  titleSmall = titleSmall ?? subtitle2,
       //  bodyLarge = bodyLarge ?? bodyText1,
-      //  bodyMedium = bodyMedium ?? bodyText2,
+
       //  bodySmall = bodySmall ?? caption,
       //  labelLarge = labelLarge ?? button,
       //  labelSmall = labelSmall ?? overline;
@@ -94,10 +149,6 @@ class AppTheme {
       contentPadding: const EdgeInsets.all(14),
     ),
     colorScheme: colorScheme,
-    navigationBarTheme: const NavigationBarThemeData(
-      backgroundColor: Colors.white,
-      height: 60,
-    ),
     iconTheme: const IconThemeData(
       color: _defaultIconColor,
       size: 24,
@@ -115,7 +166,7 @@ class AppTheme {
         height: 44,
       ),
       FormTheme(
-        padding: const EdgeInsets.only(bottom: 30),
+        padding: const EdgeInsets.all(_defaultPadding).copyWith(bottom: 30),
         paddingBetweenElements: 20,
       ),
       ShadedTextFieldTheme(
@@ -123,45 +174,16 @@ class AppTheme {
         boxShadow: _defaultBoxShadow,
       ),
       ListViewTheme(
-        padding: const EdgeInsets.fromLTRB(
-          _defaultPadding,
-          _defaultPadding,
-          _defaultPadding,
-          0,
+        padding:
+            const EdgeInsets.symmetric(horizontal: _defaultPadding).copyWith(
+          bottom: _shadedNavigationPanelTheme.height +
+              _shadedNavigationPanelTheme.margin.top +
+              _shadedNavigationPanelTheme.margin.bottom +
+              _windowPadding.bottom,
         ),
+        paddingBetweenElements: 20,
       ),
-      ShadedNavigationPanelTheme(
-        boxShadow: _defaultBoxShadow,
-        radius: BorderRadius.circular(20),
-        margin: const EdgeInsets.fromLTRB(
-          _defaultPadding,
-          0,
-          _defaultPadding,
-          _defaultPadding,
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 10,
-        ),
-        itemContentPadding: const EdgeInsets.symmetric(
-          vertical: 8,
-          horizontal: 12,
-        ),
-        itemBorderRadius: _defaultButtonBorderRadius,
-        selectedItemTheme: ShadedNavigationPanelSelectedItemTheme(
-          backgroundGradient: _defaultGradient,
-          contentColor: const Color(0xffffffff),
-          labelStyle: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            letterSpacing: -0.6,
-          ),
-          paddingBetweenIconAndLabel: 12,
-        ),
-        unselectedItemTheme: ShadedNavigationPanelUnselectedItemTheme(
-          contentColor: _defaultIconColor,
-        ),
-      ),
+      _shadedNavigationPanelTheme
     ],
   );
 }

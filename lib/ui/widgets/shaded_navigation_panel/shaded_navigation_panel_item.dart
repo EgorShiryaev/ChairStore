@@ -26,22 +26,26 @@ class ShadedNavigationPanelItem extends StatelessWidget {
     final selectedItemTheme = shadedNavigationPanelTheme.selectedItemTheme;
     final unselectedItemTheme = shadedNavigationPanelTheme.unselectedItemTheme;
 
-    return InkWell(
-      onTap: onPress,
-      child: isSelected
-          ? ShadedNavigationPanelSelectedItem(
-              icon: AssetIcon(
-                name: assetIconName,
-                color: selectedItemTheme.contentColor,
+    return Material(
+      color: shadedNavigationPanelTheme.backgroundColor,
+      child: InkWell(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        onTap: onPress,
+        child: isSelected
+            ? ShadedNavigationPanelSelectedItem(
+                icon: AssetIcon(
+                  name: assetIconName,
+                  color: selectedItemTheme.contentColor,
+                ),
+                label: label,
+              )
+            : ShadedNavigationPanelUnselectedItem(
+                icon: AssetIcon(
+                  name: assetIconName,
+                  color: unselectedItemTheme.contentColor,
+                ),
               ),
-              label: label,
-            )
-          : ShadedNavigationPanelUnselectedItem(
-              icon: AssetIcon(
-                name: assetIconName,
-                color: unselectedItemTheme.contentColor,
-              ),
-            ),
+      ),
     );
   }
 }

@@ -13,12 +13,15 @@ class ShadedNavigationPanelUnselectedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final shadedNavigationPanelTheme =
         Theme.of(context).extension<ShadedNavigationPanelTheme>()!;
-    return Container(
-      padding: shadedNavigationPanelTheme.itemContentPadding,
+    return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: shadedNavigationPanelTheme.itemBorderRadius,
+        color: shadedNavigationPanelTheme.backgroundColor,
       ),
-      child: icon,
+      child: Padding(
+        padding: shadedNavigationPanelTheme.itemContentPadding,
+        child: icon,
+      ),
     );
   }
 }

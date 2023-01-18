@@ -22,7 +22,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formTheme = Theme.of(context).extension<FormTheme>()!;
-    final listViewTheme = Theme.of(context).extension<ListViewTheme>()!;
+
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SuccessAuthState) {
@@ -40,7 +40,6 @@ class SignUpPage extends StatelessWidget {
           children: [
             Scaffold(
               body: SingleChildScrollView(
-                padding: listViewTheme.padding,
                 child: SafeArea(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

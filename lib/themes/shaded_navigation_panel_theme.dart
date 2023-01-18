@@ -13,6 +13,8 @@ class ShadedNavigationPanelTheme
   final BorderRadius itemBorderRadius;
   final ShadedNavigationPanelSelectedItemTheme selectedItemTheme;
   final ShadedNavigationPanelUnselectedItemTheme unselectedItemTheme;
+  final Color backgroundColor;
+  final double height;
 
   ShadedNavigationPanelTheme({
     required this.radius,
@@ -23,6 +25,8 @@ class ShadedNavigationPanelTheme
     required this.itemContentPadding,
     required this.itemBorderRadius,
     required this.unselectedItemTheme,
+    required this.backgroundColor,
+    required this.height,
   });
 
   @override
@@ -35,6 +39,8 @@ class ShadedNavigationPanelTheme
     EdgeInsets? itemContentPadding,
     BorderRadius? itemBorderRadius,
     ShadedNavigationPanelUnselectedItemTheme? unselectedItemTheme,
+    Color? backgroundColor,
+    double? height,
   }) {
     return ShadedNavigationPanelTheme(
       radius: radius ?? this.radius,
@@ -45,6 +51,8 @@ class ShadedNavigationPanelTheme
       itemContentPadding: itemContentPadding ?? this.itemContentPadding,
       itemBorderRadius: itemBorderRadius ?? this.itemBorderRadius,
       unselectedItemTheme: unselectedItemTheme ?? this.unselectedItemTheme,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      height: height ?? this.height,
     );
   }
 
@@ -81,6 +89,12 @@ class ShadedNavigationPanelTheme
         other.unselectedItemTheme,
         t,
       ),
+      backgroundColor: Color.lerp(
+        backgroundColor,
+        other.backgroundColor,
+        t,
+      )!,
+      height: height,
     );
   }
 }

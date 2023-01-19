@@ -31,7 +31,7 @@ class _HomeTabsPageState extends State<HomeTabsPage> {
         TabPagesContainer(
           pages: const [
             HomePage(),
-            Center(child: Text('Search')),
+            Center(child: Text('Catalog')),
             Center(child: Text('Cart')),
             Center(child: Text('Profile')),
           ],
@@ -42,7 +42,7 @@ class _HomeTabsPageState extends State<HomeTabsPage> {
           selectedIndex: selectedIndex,
           tabs: [
             NavigationTabItem(iconName: 'home', label: 'Home'),
-            NavigationTabItem(iconName: 'search', label: 'Search'),
+            NavigationTabItem(iconName: 'catalog', label: 'Catalog'),
             NavigationTabItem(iconName: 'cart', label: 'Cart'),
             NavigationTabItem(iconName: 'profile', label: 'Profile'),
           ],

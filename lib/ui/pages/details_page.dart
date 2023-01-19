@@ -86,12 +86,16 @@ class DetailsPage extends StatelessWidget {
                               ),
                             ),
                             Text(product.title, style: textTheme.headlineLarge),
-                            SizedBox(height: pageTheme.paddingBetweenElements),
+                            SizedBox(
+                              height: pageTheme.paddingBetweenElements / 2,
+                            ),
                             Text(
                               product.priceForUi,
                               style: textTheme.headlineSmall,
                             ),
-                            SizedBox(height: pageTheme.paddingBetweenElements),
+                            SizedBox(
+                              height: pageTheme.paddingBetweenElements / 2,
+                            ),
                             Text(
                               product.description,
                               style: textTheme.bodyMedium,

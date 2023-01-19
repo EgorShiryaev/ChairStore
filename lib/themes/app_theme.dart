@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'filled_button_theme.dart';
 import 'form_theme.dart';
+import 'grid_theme.dart';
 import 'list_view_theme.dart';
 import 'product_card_theme.dart';
 import 'shaded_navigation_panel_selected_item_theme.dart';
@@ -12,7 +13,7 @@ import 'shaded_navigation_panel_theme.dart';
 import 'shaded_navigation_panel_unselected_item_theme.dart';
 import 'shaded_text_field_theme.dart';
 
-final _windowPadding = MediaQueryData.fromWindow(ui.window).padding;
+final safeAreaPadding = MediaQueryData.fromWindow(ui.window).padding;
 
 class AppTheme {
   static const colorScheme = ColorScheme(
@@ -30,6 +31,49 @@ class AppTheme {
     tertiary: Color(0xffa95efa),
     onTertiary: Color(0xffffffff),
     shadow: Color(0x40000000),
+  );
+
+  static const _defaultLetterSpacing = -0.4;
+
+  static final textTheme = TextTheme(
+    displayMedium: TextStyle(
+      fontSize: 36,
+      color: colorScheme.primary,
+      fontWeight: FontWeight.bold,
+      letterSpacing: _defaultLetterSpacing,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 18,
+      color: colorScheme.primary,
+      fontWeight: FontWeight.bold,
+      letterSpacing: _defaultLetterSpacing,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 16,
+      color: colorScheme.primary,
+      fontWeight: FontWeight.bold,
+      letterSpacing: _defaultLetterSpacing,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14,
+      color: colorScheme.primary,
+      letterSpacing: _defaultLetterSpacing,
+    ),
+    labelMedium: const TextStyle(
+      fontSize: 14,
+      color: Color(0xff9B9B9B),
+      letterSpacing: _defaultLetterSpacing,
+    ),
+    //  displayLarge = displayLarge ?? headline1,
+    //  displaySmall = displaySmall ?? headline3,
+    //  headlineLarge =  headlineLarge ?? headline4,
+    //  headlineSmall = headlineSmall ?? headline5,
+    //  titleLarge = titleLarge ?? headline6,
+    //  titleSmall = titleSmall ?? subtitle2,
+    //  bodyLarge = bodyLarge ?? bodyText1,
+    //  bodySmall = bodySmall ?? caption,
+    //  labelLarge = labelLarge ?? button,
+    //  labelSmall = labelSmall ?? overline;
   );
 
   static const _defaultPadding = 16.0;
@@ -58,7 +102,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         letterSpacing: -0.6,
       ),
-      paddingBetweenIconAndLabel: 12,
+      paddingBetweenIconAndLabel: 8,
     ),
     unselectedItemTheme: ShadedNavigationPanelUnselectedItemTheme(
       contentColor: _defaultIconColor,
@@ -86,6 +130,8 @@ class AppTheme {
 
   static const _defaultIconColor = Color(0xff171717);
 
+  static const _defaultPaddingBetweenListElements = 20.0;
+
   static final theme = ThemeData(
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: colorScheme.tertiary,
@@ -109,47 +155,11 @@ class AppTheme {
       ),
     ),
     scaffoldBackgroundColor: colorScheme.background,
-    textTheme: TextTheme(
-      displayMedium: TextStyle(
-        fontSize: 36,
-        color: colorScheme.primary,
-        fontWeight: FontWeight.bold,
-      ),
-      headlineMedium: TextStyle(
-        fontSize: 24,
-        color: colorScheme.primary,
-        fontWeight: FontWeight.bold,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 18,
-        color: colorScheme.primary,
-        fontWeight: FontWeight.bold,
-        letterSpacing: -0.4,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        color: colorScheme.primary,
-        letterSpacing: -0.4,
-      ),
-      //  displayLarge = displayLarge ?? headline1,
-      //  displaySmall = displaySmall ?? headline3,
-      //  headlineLarge =  headlineLarge ?? headline4,
-      //  headlineSmall = headlineSmall ?? headline5,
-      //  titleLarge = titleLarge ?? headline6,
-      //  titleSmall = titleSmall ?? subtitle2,
-      //  bodyLarge = bodyLarge ?? bodyText1,
-
-      //  bodySmall = bodySmall ?? caption,
-      //  labelLarge = labelLarge ?? button,
-      //  labelSmall = labelSmall ?? overline;
-    ),
+    textTheme: textTheme,
     inputDecorationTheme: InputDecorationTheme(
       fillColor: colorScheme.background,
       border: InputBorder.none,
-      labelStyle: const TextStyle(
-        fontSize: 14,
-        color: Color(0xff9B9B9B),
-      ),
+      labelStyle: textTheme.labelMedium,
       contentPadding: const EdgeInsets.all(14),
     ),
     colorScheme: colorScheme,
@@ -160,9 +170,7 @@ class AppTheme {
     extensions: <ThemeExtension<dynamic>>[
       FilledButtonTheme(
         borderRadius: _defaultButtonBorderRadius,
-        labelStyle: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
+        labelStyle: textTheme.titleMedium!.copyWith(
           color: colorScheme.onTertiary,
         ),
         boxShadow: _defaultBoxShadow,
@@ -171,7 +179,7 @@ class AppTheme {
       ),
       FormTheme(
         padding: const EdgeInsets.all(_defaultPadding).copyWith(bottom: 30),
-        paddingBetweenElements: 20,
+        paddingBetweenElements: _defaultPaddingBetweenListElements,
       ),
       ShadedTextFieldTheme(
         borderRadius: BorderRadius.circular(4),
@@ -183,25 +191,22 @@ class AppTheme {
           bottom: _shadedNavigationPanelTheme.height +
               _shadedNavigationPanelTheme.margin.top +
               _shadedNavigationPanelTheme.margin.bottom +
-              _windowPadding.bottom,
+              safeAreaPadding.bottom,
         ),
-        paddingBetweenElements: 20,
+        paddingBetweenElements: _defaultPaddingBetweenListElements,
       ),
       _shadedNavigationPanelTheme,
       ProductCardTheme(
         backgroundColor: const Color(0xffF3F6F8),
-        titleStyle: TextStyle(
-          fontSize: 16,
-          color: colorScheme.primary,
-          fontWeight: FontWeight.bold,
-          letterSpacing: -0.4,
-        ),
-        subtitleStyle: TextStyle(
-          fontSize: 14,
-          color: colorScheme.primary,
-          letterSpacing: -0.4,
-        ),
+        titleStyle: textTheme.titleMedium!,
+        bodyStyle: textTheme.bodyMedium!,
         radius: BorderRadius.circular(32),
+      ),
+      GridTheme(
+        crossAxisSpacing: _defaultPaddingBetweenListElements,
+        mainAxisSpacing: _defaultPaddingBetweenListElements,
+        maxCrossAxisExtent: 160,
+        mainAxisExtent: 240,
       )
     ],
   );

@@ -13,6 +13,7 @@ import '../widgets/modals/error_modal.dart';
 import '../widgets/page_title.dart';
 import '../widgets/sign_up_page /sign_up_form.dart';
 import 'home_tabs_page.dart';
+import 'login_page.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -31,16 +32,15 @@ class SignUpPage extends StatelessWidget {
         } else if (state is ErrorAuthState) {
           ErrorModal.show(context, message: state.message);
         }
-        if (state is ErrorAuthState || state is UnAuthState) {
-          FlutterNativeSplash.remove();
-        }
       },
       builder: (context, state) {
         return Stack(
           children: [
             Scaffold(
-              body: SingleChildScrollView(
-                child: SafeArea(
+              body: SafeArea(
+                bottom: false,
+                child: SingleChildScrollView(
+                  padding: formTheme.padding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

@@ -1,6 +1,7 @@
-import 'exception_with_message_exception.dart';
 
-class TechnicalException extends ExceptionWithMessage {
-  TechnicalException()
+import 'exception_with_user_data.dart';
+
+class TechnicalException extends ExceptionWithUserData {
+  TechnicalException({super.user})
       : super(message: 'Oops, something went wrong. Please try later');
 }

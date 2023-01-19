@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../logic/models/pages/details_page_arguments.dart';
+import '../../logic/models/page_arguments/details_page_arguments.dart';
 import '../../logic/models/product.dart';
 import '../themes/grid_theme.dart';
 import '../themes/product_card_theme.dart';

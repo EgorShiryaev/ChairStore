@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../logic/models/pages/details_page_arguments.dart';
+import '../../logic/models/page_arguments/details_page_arguments.dart';
 import '../themes/details_page_theme.dart';
 import '../themes/list_view_theme.dart';
 import '../themes/page_theme.dart';
@@ -24,6 +24,7 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
+            tooltip: 'Cart',
             onPressed: () {},
             icon: const AssetIcon(iconName: 'cart'),
           )
@@ -31,75 +32,89 @@ class DetailsPage extends StatelessWidget {
         shape: const Border(),
         backgroundColor: detailsPageTheme.backgroundColor,
       ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: pageTheme.padding,
-            child: Image.asset(
-              'assets/images/${product.imageUrl}.png',
-            ),
-          ),
-          Center(
-            child: ListView(
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
-              reverse: true,
-              children: [
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: detailsPageTheme.bottomSheetRadius,
-                  ),
-                  child: Padding(
-                    padding: pageTheme.padding.copyWith(top: 10, bottom: 35),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: Center(
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: SizedBox(
-                                height: 3,
-                                width: 50,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Text(product.title, style: textTheme.headlineLarge),
-                        SizedBox(height: pageTheme.paddingBetweenElements),
-                        Text(
-                          product.priceForUi,
-                          style: textTheme.headlineSmall,
-                        ),
-                        SizedBox(height: pageTheme.paddingBetweenElements),
-                        Text(
-                          product.description,
-                          style: textTheme.bodyMedium,
-                        ),
-                        SizedBox(height: pageTheme.paddingBetweenElements),
-                        Text(
-                          product.description,
-                          style: textTheme.bodyMedium,
-                        ),
-                        SizedBox(height: pageTheme.paddingBetweenElements),
-                        FilledButton(label: 'Add to cart', onPress: () {})
-                      ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final imageConstraints = BoxConstraints(
+            maxWidth: constraints.maxWidth >= constraints.maxHeight
+                ? constraints.maxHeight * (2 / 3)
+                : constraints.maxWidth,
+            maxHeight: constraints.maxWidth >= constraints.maxHeight
+                ? constraints.maxHeight * (2 / 3)
+                : constraints.maxWidth,
+          );
+          return Stack(
+            children: [
+              Padding(
+                padding: pageTheme.padding,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    constraints: imageConstraints,
+                    child: Image.asset(
+                      'assets/images/${product.imageUrl}.png',
                     ),
                   ),
                 ),
-                const AspectRatio(
-                  aspectRatio: 1,
-                  child: SizedBox(),
-                ),
-              ],
-            ),
-          )
-        ],
+              ),
+              ListView(
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
+                reverse: true,
+                children: [
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: detailsPageTheme.bottomSheetRadius,
+                    ),
+                    child: SafeArea(
+                      top: false,
+                      child: Padding(
+                        padding: pageTheme.padding.copyWith(top: 10, bottom: 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: Center(
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade300,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: const SizedBox(height: 3, width: 50),
+                                ),
+                              ),
+                            ),
+                            Text(product.title, style: textTheme.headlineLarge),
+                            SizedBox(height: pageTheme.paddingBetweenElements),
+                            Text(
+                              product.priceForUi,
+                              style: textTheme.headlineSmall,
+                            ),
+                            SizedBox(height: pageTheme.paddingBetweenElements),
+                            Text(
+                              product.description,
+                              style: textTheme.bodyMedium,
+                            ),
+                            SizedBox(height: pageTheme.paddingBetweenElements),
+                            FilledButton(label: 'Add to cart', onPress: () {})
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    constraints: imageConstraints,
+                    child: const AspectRatio(
+                      aspectRatio: 1,
+                      child: SizedBox(),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          );
+        },
       ),
     );
   }

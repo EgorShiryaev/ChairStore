@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import '../../themes/form_theme.dart';
+import '../themes/form_theme.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
 import '../cubits/auth_cubit/auth_state.dart';
 import '../widgets/loading_mask.dart';
@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
         }
 
         if (state is ErrorAuthState || state is UnAuthState) {
-          Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
+          FlutterNativeSplash.remove();
         }
       },
       builder: (context, state) {

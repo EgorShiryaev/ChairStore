@@ -2,7 +2,7 @@ import 'package:chair_store/ui/widgets/shaded_navigation_panel/shaded_navigation
 import 'package:chair_store/ui/widgets/shaded_navigation_panel/shaded_navigation_panel_unselected_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../../themes/shaded_navigation_panel_theme.dart';
+import '../../themes/shaded_navigation_panel_theme.dart';
 import '../asset_icon.dart';
 
 class ShadedNavigationPanelItem extends StatelessWidget {
@@ -28,8 +28,7 @@ class ShadedNavigationPanelItem extends StatelessWidget {
 
     return Material(
       color: shadedNavigationPanelTheme.backgroundColor,
-      child: InkWell(
-        overlayColor: MaterialStateProperty.all(Colors.transparent),
+      child: GestureDetector(
         onTap: onPress,
         child: isSelected
             ? ShadedNavigationPanelSelectedItem(

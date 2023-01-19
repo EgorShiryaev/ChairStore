@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/app_theme.dart';
-import '../../themes/grid_theme.dart';
-import '../../themes/list_view_theme.dart';
+import '../../logic/models/product.dart';
+import '../themes/app_theme.dart';
+import '../themes/grid_theme.dart';
+import '../themes/list_view_theme.dart';
 import '../widgets/product_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -45,10 +46,14 @@ class HomePage extends StatelessWidget {
                   ),
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return const ProductCard(
-                        imageName: 'wood_frame',
-                        price: 1600,
-                        title: 'Wood Frame',
+                      return ProductCard(
+                        product: Product(
+                          title: 'Wood Frame',
+                          price: 1600,
+                          description:
+                              'This chair features a sturdy wooden frame that provides a solid foundation for comfortable seating. The natural grain of the wood gives it a warm, inviting look that pairs well with a variety of decor styles. The design is simple and classic, making it a versatile addition to any room. The chair is a perfect blend of durability and comfort.',
+                          imageUrl: 'wood_frame',
+                        ),
                       );
                     },
                     childCount: 20,

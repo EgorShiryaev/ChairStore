@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../themes/shaded_navigation_panel_theme.dart';
+import '../../themes/shaded_navigation_panel_theme.dart';
 
 class ShadedNavigationPanelUnselectedItem extends StatelessWidget {
   final Widget icon;

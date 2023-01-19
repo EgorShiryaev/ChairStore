@@ -1,4 +1,4 @@
-import 'package:chair_store/themes/shaded_navigation_panel_unselected_item_theme.dart';
+import 'package:chair_store/ui/themes/shaded_navigation_panel_unselected_item_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'shaded_navigation_panel_selected_item_theme.dart';
@@ -31,7 +31,7 @@ class ShadedNavigationPanelTheme
 
   @override
   ThemeExtension<ShadedNavigationPanelTheme> copyWith({
-    BorderRadius? radius,
+    BorderRadius? bottomSheetRadius,
     BoxShadow? boxShadow,
     EdgeInsets? padding,
     EdgeInsets? margin,
@@ -43,7 +43,7 @@ class ShadedNavigationPanelTheme
     double? height,
   }) {
     return ShadedNavigationPanelTheme(
-      radius: radius ?? this.radius,
+      radius: bottomSheetRadius ?? this.radius,
       boxShadow: boxShadow ?? this.boxShadow,
       margin: padding ?? this.margin,
       padding: padding ?? this.padding,

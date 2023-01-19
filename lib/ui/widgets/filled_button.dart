@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/filled_button_theme.dart';
+import '../themes/filled_button_theme.dart';
 
 class FilledButton extends StatelessWidget {
   final String label;
@@ -15,8 +15,6 @@ class FilledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final filledButtonTheme = Theme.of(context).extension<FilledButtonTheme>()!;
     return InkWell(
-      splashColor: Theme.of(context).colorScheme.onTertiary,
-      borderRadius: filledButtonTheme.borderRadius,
       onTap: onPress,
       child: Container(
         height: filledButtonTheme.height,

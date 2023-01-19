@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../themes/shaded_text_field_theme.dart';
+import '../../themes/shaded_text_field_theme.dart';
 
 class ShadedTextField extends StatelessWidget {
   final String label;

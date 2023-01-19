@@ -61,6 +61,7 @@ class AuthCubit extends Cubit<AuthState> {
   void updateAuthSession() {
     _repository.updateAuthorization().then((_) {
       emit(SuccessAuthState());
+      // emit(UnAuthState());
     }).catchError((error) {
       if (error is NoAuthDataException) {
         emit(UnAuthState());

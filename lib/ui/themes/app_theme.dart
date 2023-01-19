@@ -1,8 +1,10 @@
 import 'dart:ui' as ui;
 
+import 'package:chair_store/ui/themes/page_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'details_page_theme.dart';
 import 'filled_button_theme.dart';
 import 'form_theme.dart';
 import 'grid_theme.dart';
@@ -42,10 +44,22 @@ class AppTheme {
       fontWeight: FontWeight.bold,
       letterSpacing: _defaultLetterSpacing,
     ),
+    headlineLarge: TextStyle(
+      fontSize: 24,
+      color: colorScheme.primary,
+      fontWeight: FontWeight.bold,
+      letterSpacing: _defaultLetterSpacing,
+    ),
     headlineMedium: TextStyle(
       fontSize: 18,
       color: colorScheme.primary,
       fontWeight: FontWeight.bold,
+      letterSpacing: _defaultLetterSpacing,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 16,
+      color: colorScheme.primary,
+      fontWeight: FontWeight.w600,
       letterSpacing: _defaultLetterSpacing,
     ),
     titleMedium: TextStyle(
@@ -77,6 +91,11 @@ class AppTheme {
   );
 
   static const _defaultPadding = 16.0;
+
+  static final _pageTheme = PageTheme(
+    padding: const EdgeInsets.all(_defaultPadding),
+    paddingBetweenElements: 20,
+  );
 
   static final _shadedNavigationPanelTheme = ShadedNavigationPanelTheme(
     boxShadow: _defaultBoxShadow,
@@ -130,7 +149,7 @@ class AppTheme {
 
   static const _defaultIconColor = Color(0xff171717);
 
-  static const _defaultPaddingBetweenListElements = 20.0;
+  static const _defaultProductBackground = Color(0xffF3F6F8);
 
   static final theme = ThemeData(
     progressIndicatorTheme: ProgressIndicatorThemeData(
@@ -178,36 +197,42 @@ class AppTheme {
         height: 44,
       ),
       FormTheme(
-        padding: const EdgeInsets.all(_defaultPadding).copyWith(bottom: 30),
-        paddingBetweenElements: _defaultPaddingBetweenListElements,
+        padding: _pageTheme.padding.copyWith(bottom: 30),
+        paddingBetweenElements: _pageTheme.paddingBetweenElements,
       ),
       ShadedTextFieldTheme(
         borderRadius: BorderRadius.circular(4),
         boxShadow: _defaultBoxShadow,
       ),
       ListViewTheme(
-        padding:
-            const EdgeInsets.symmetric(horizontal: _defaultPadding).copyWith(
+        padding: _pageTheme.padding.copyWith(
           bottom: _shadedNavigationPanelTheme.height +
               _shadedNavigationPanelTheme.margin.top +
               _shadedNavigationPanelTheme.margin.bottom +
               safeAreaPadding.bottom,
+          top: 0,
         ),
-        paddingBetweenElements: _defaultPaddingBetweenListElements,
+        paddingBetweenElements: _pageTheme.paddingBetweenElements,
       ),
       _shadedNavigationPanelTheme,
       ProductCardTheme(
-        backgroundColor: const Color(0xffF3F6F8),
+        backgroundColor: _defaultProductBackground,
         titleStyle: textTheme.titleMedium!,
         bodyStyle: textTheme.bodyMedium!,
         radius: BorderRadius.circular(32),
       ),
       GridTheme(
-        crossAxisSpacing: _defaultPaddingBetweenListElements,
-        mainAxisSpacing: _defaultPaddingBetweenListElements,
+        crossAxisSpacing: _pageTheme.paddingBetweenElements,
+        mainAxisSpacing: _pageTheme.paddingBetweenElements,
         maxCrossAxisExtent: 160,
         mainAxisExtent: 240,
-      )
+      ),
+      DetailsPageTheme(
+        backgroundColor: _defaultProductBackground,
+        bottomSheetRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        bottomSheetBackgroundColor: const Color(0xffffffff),
+      ),
+      _pageTheme,
     ],
   );
 }

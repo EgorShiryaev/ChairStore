@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../logic/models/navigation_tab_item.dart';
-import '../../../themes/shaded_navigation_panel_theme.dart';
+import '../../themes/shaded_navigation_panel_theme.dart';
 import 'shaded_navigation_panel_item.dart';
 
 class ShadedNavigationPanel extends StatelessWidget {

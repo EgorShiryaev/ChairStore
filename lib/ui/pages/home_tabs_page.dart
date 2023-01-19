@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../logic/models/navigation_tab_item.dart';
-import '../../themes/list_view_theme.dart';
+import '../themes/list_view_theme.dart';
 import '../widgets/shaded_navigation_panel/shaded_navigation_panel.dart';
 import '../widgets/tab_pages_container.dart';
 import 'home_page.dart';

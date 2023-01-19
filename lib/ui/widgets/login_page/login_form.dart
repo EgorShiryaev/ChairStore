@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../themes/form_theme.dart';
+import '../../themes/form_theme.dart';
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../pages/sign_up_page.dart';
 import '../fields/obscured_text_field.dart';

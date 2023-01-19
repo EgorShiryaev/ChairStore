@@ -33,28 +33,30 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  void listener(BuildContext context, AuthState state) {
+    if (state is SuccessAuthState) {
+      Navigator.pushReplacementNamed(context, HomeTabsPage.routeName);
+      Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
+    } else if (state is ErrorAuthState) {
+      ErrorModal.show(context, message: state.message);
+      if (state.email != null) {
+        emailController.text = state.email!;
+      }
+      if (state.password != null) {
+        passwordController.text = state.password!;
+      }
+    }
+
+    if (state is ErrorAuthState || state is UnAuthState) {
+      FlutterNativeSplash.remove();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final formTheme = Theme.of(context).extension<FormTheme>()!;
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is SuccessAuthState) {
-          Navigator.pushReplacementNamed(context, HomeTabsPage.routeName);
-          Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
-        } else if (state is ErrorAuthState) {
-          ErrorModal.show(context, message: state.message);
-          if (state.email != null) {
-            emailController.text = state.email!;
-          }
-          if (state.password != null) {
-            passwordController.text = state.password!;
-          }
-        }
-
-        if (state is ErrorAuthState || state is UnAuthState) {
-          FlutterNativeSplash.remove();
-        }
-      },
+      listener: listener,
       builder: (context, state) {
         return Stack(
           children: [

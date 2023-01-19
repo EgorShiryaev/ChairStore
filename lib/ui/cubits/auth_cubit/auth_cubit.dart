@@ -71,6 +71,7 @@ class AuthCubit extends Cubit<AuthState> {
     }).catchError((error) {
       if (error is NoAuthDataException) {
         emit(UnAuthState());
+        return;
       }
 
       if (error is ExceptionWithUserData) {

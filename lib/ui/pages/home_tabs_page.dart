@@ -1,3 +1,4 @@
+import 'package:chair_store/ui/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../logic/models/navigation_tab_item.dart';
@@ -32,7 +33,7 @@ class _HomeTabsPageState extends State<HomeTabsPage> {
             HomePage(),
             Center(child: Text('Catalog')),
             Center(child: Text('Cart')),
-            Center(child: Text('Profile')),
+            ProfilePage(),
           ],
           selectedIndex: selectedIndex,
         ),

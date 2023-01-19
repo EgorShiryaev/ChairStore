@@ -13,6 +13,8 @@ import '../datasources/auth_remote_datasource.dart';
 import '../datasources/secure_local_datasource.dart';
 import '../models/user_data.dart';
 
+String? userEmail;
+
 class AuthRepository {
   final AuthRemoteDatasource _authRemoteDatasource;
   final SecureLocalDatasource _secureLocalDatasource;
@@ -51,7 +53,8 @@ class AuthRepository {
 
   Future<void> login(UserData data) async {
     try {
-      await _authRemoteDatasource.login(data);
+      final credential = await _authRemoteDatasource.login(data);
+      userEmail = credential.user!.email;
       await _secureLocalDatasource.saveUserData(data);
     } catch (e) {
       _exceptionHandler(e);
@@ -60,7 +63,8 @@ class AuthRepository {
 
   Future<void> signUp(UserData data) async {
     try {
-      await _authRemoteDatasource.signUp(data);
+      final credential = await _authRemoteDatasource.signUp(data);
+      userEmail = credential.user!.email;
       await _secureLocalDatasource.saveUserData(data);
     } catch (e) {
       _exceptionHandler(e);
@@ -70,6 +74,7 @@ class AuthRepository {
   Future<void> logout() async {
     try {
       await _authRemoteDatasource.logout();
+      userEmail = null;
       await _secureLocalDatasource.deleteUser();
     } catch (e) {
       _exceptionHandler(e);
@@ -81,7 +86,8 @@ class AuthRepository {
       final user = await _secureLocalDatasource.user;
 
       if (user != null) {
-        await _authRemoteDatasource.login(user);
+        final credential = await _authRemoteDatasource.login(user);
+        userEmail = credential.user!.email;
       } else {
         throw NoAuthDataException();
       }

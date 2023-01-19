@@ -23,7 +23,7 @@ class DetailsPage extends StatelessWidget {
             tooltip: 'Cart',
             onPressed: () {},
             icon: const AssetIcon(iconName: 'cart'),
-          )
+          ),
         ],
         shape: const Border(),
         backgroundColor: detailsPageTheme.backgroundColor,

@@ -18,19 +18,21 @@ class SignUpPage extends StatelessWidget {
 
   static const routeName = '/signUp';
 
+  void listener(BuildContext context, AuthState state) {
+    if (state is SuccessAuthState) {
+      Navigator.pushReplacementNamed(context, HomeTabsPage.routeName);
+      Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
+    } else if (state is ErrorAuthState) {
+      ErrorModal.show(context, message: state.message);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final formTheme = Theme.of(context).extension<FormTheme>()!;
 
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is SuccessAuthState) {
-          Navigator.pushReplacementNamed(context, HomeTabsPage.routeName);
-          Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
-        } else if (state is ErrorAuthState) {
-          ErrorModal.show(context, message: state.message);
-        }
-      },
+      listener: listener,
       builder: (context, state) {
         return Stack(
           children: [

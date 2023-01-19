@@ -10,6 +10,7 @@ import 'grid_theme.dart';
 import 'list_view_theme.dart';
 import 'page_theme.dart';
 import 'product_card_theme.dart';
+import 'search_field_theme.dart';
 import 'shaded_navigation_panel_selected_item_theme.dart';
 import 'shaded_navigation_panel_theme.dart';
 import 'shaded_navigation_panel_unselected_item_theme.dart';
@@ -76,6 +77,11 @@ class AppTheme {
     labelMedium: const TextStyle(
       fontSize: 14,
       color: Color(0xff9B9B9B),
+      letterSpacing: _defaultLetterSpacing,
+    ),
+    labelSmall:  const TextStyle(
+      fontSize: 12,
+      color: Color(0x66171717),
       letterSpacing: _defaultLetterSpacing,
     ),
     //  displayLarge = displayLarge ?? headline1,
@@ -235,6 +241,10 @@ class AppTheme {
         bottomSheetBackgroundColor: const Color(0xffffffff),
       ),
       _pageTheme,
+      SearchFieldTheme(
+        fillColor: const Color(0xffF3F6F8),
+        radius: BorderRadius.circular(12),
+      )
     ],
   );
 }

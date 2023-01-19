@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../logic/models/page_arguments/details_page_arguments.dart';
 import '../themes/details_page_theme.dart';
-import '../themes/page_theme.dart';
 import '../widgets/asset_icon.dart';
 import '../widgets/details_page/details_page_body.dart';
-import '../widgets/filled_button.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});

@@ -1,10 +1,11 @@
-import 'package:chair_store/ui/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../logic/models/navigation_tab_item.dart';
 import '../widgets/shaded_navigation_panel/shaded_navigation_panel.dart';
 import '../widgets/tab_pages_container.dart';
+import 'catalog_page.dart';
 import 'home_page.dart';
+import 'profile_page.dart';
 
 class HomeTabsPage extends StatefulWidget {
   const HomeTabsPage({super.key});
@@ -31,7 +32,7 @@ class _HomeTabsPageState extends State<HomeTabsPage> {
         TabPagesContainer(
           pages: const [
             HomePage(),
-            Center(child: Text('Catalog')),
+            CatalogPage(),
             Center(child: Text('Cart')),
             ProfilePage(),
           ],

@@ -21,7 +21,7 @@ class App extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Chair store',
+        title: 'ChairStore',
         initialRoute: LoginPage.routeName,
         routes: {
           SignUpPage.routeName: (context) => const SignUpPage(),

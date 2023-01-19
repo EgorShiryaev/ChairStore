@@ -39,17 +39,15 @@ class SignUpPage extends StatelessWidget {
             Scaffold(
               body: SafeArea(
                 bottom: false,
-                child: Scrollbar(
-                  child: SingleChildScrollView(
-                    padding: formTheme.padding,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const PageTitle(title: 'Sign up'),
-                        SizedBox(height: formTheme.paddingBetweenElements),
-                        const SignUpForm()
-                      ],
-                    ),
+                child: SingleChildScrollView(
+                  padding: formTheme.padding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const PageTitle(title: 'Sign up'),
+                      SizedBox(height: formTheme.paddingBetweenElements),
+                      const SignUpForm()
+                    ],
                   ),
                 ),
               ),

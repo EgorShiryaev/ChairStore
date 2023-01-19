@@ -1,21 +1,56 @@
 import 'package:flutter/material.dart';
 
 import '../../logic/models/product.dart';
+import '../themes/list_view_theme.dart';
+import '../widgets/catalog_page/search_field.dart';
 import '../widgets/product_widgets/product_wrap_title.dart';
 import '../widgets/product_widgets/products_wrap.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class CatalogPage extends StatefulWidget {
+  const CatalogPage({super.key});
+
+  @override
+  State<CatalogPage> createState() => _CatalogPageState();
+}
+
+class _CatalogPageState extends State<CatalogPage> {
+  String searchValue = '';
+
+  void setSearchText(String value) {
+    setState(() {
+      searchValue = value;
+    });
+  }
+
+  void changedSearchText(String newValue) {
+    setSearchText(newValue);
+  }
+
+  void clear() {
+    setSearchText('');
+  }
 
   @override
   Widget build(BuildContext context) {
-   
+    final listViewTheme = Theme.of(context).extension<ListViewTheme>()!;
     return Scaffold(
+      appBar: AppBar(
+        title: SearchField(
+          value: searchValue,
+          clear: clear,
+          onChanged: changedSearchText,
+        ),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(8),
+          child: SizedBox(),
+        ),
+      ),
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(
           slivers: [
-            const ProductWrapTitle(title: 'Recommended for You'),
+            if (searchValue.isNotEmpty)
+              const ProductWrapTitle(title: 'Found 6 results'),
             ProductsWrap(
               products: List.generate(
                 20,
@@ -27,7 +62,7 @@ class HomePage extends StatelessWidget {
                   imageUrl: 'wood_frame',
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

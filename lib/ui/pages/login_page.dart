@@ -63,22 +63,20 @@ class _LoginPageState extends State<LoginPage> {
             Scaffold(
               body: SafeArea(
                 bottom: false,
-                child: Scrollbar(
-                  child: SingleChildScrollView(
-                    padding: formTheme.padding,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const PageTitle(title: 'Login'),
-                        SizedBox(
-                          height: formTheme.paddingBetweenElements,
-                        ),
-                        LoginForm(
-                          emailController: emailController,
-                          passwordController: passwordController,
-                        ),
-                      ],
-                    ),
+                child: SingleChildScrollView(
+                  padding: formTheme.padding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const PageTitle(title: 'Login'),
+                      SizedBox(
+                        height: formTheme.paddingBetweenElements,
+                      ),
+                      LoginForm(
+                        emailController: emailController,
+                        passwordController: passwordController,
+                      ),
+                    ],
                   ),
                 ),
               ),

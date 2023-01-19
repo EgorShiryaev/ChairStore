@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../logic/models/page_arguments/details_page_arguments.dart';
 import '../../logic/models/product.dart';
+import '../pages/details_page.dart';
 import '../themes/grid_theme.dart';
 import '../themes/product_card_theme.dart';
-import '../pages/details_page.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;

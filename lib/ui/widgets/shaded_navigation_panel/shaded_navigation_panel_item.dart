@@ -1,9 +1,9 @@
-import 'package:chair_store/ui/widgets/shaded_navigation_panel/shaded_navigation_panel_selected_item.dart';
-import 'package:chair_store/ui/widgets/shaded_navigation_panel/shaded_navigation_panel_unselected_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../themes/shaded_navigation_panel_theme.dart';
 import '../asset_icon.dart';
+import 'shaded_navigation_panel_selected_item.dart';
+import 'shaded_navigation_panel_unselected_item.dart';
 
 class ShadedNavigationPanelItem extends StatelessWidget {
   final bool isSelected;

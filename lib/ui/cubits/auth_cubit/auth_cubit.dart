@@ -24,10 +24,12 @@ class AuthCubit extends Cubit<AuthState> {
     await _repository.login(data).then((_) {
       emit(SuccessAuthState());
     }).catchError((error) {
-      emit(ErrorAuthState(
-        message: (error as ExceptionWithMessage).message,
-        email: email,
-      ));
+      emit(
+        ErrorAuthState(
+          message: (error as ExceptionWithMessage).message,
+          email: email,
+        ),
+      );
     });
   }
 
@@ -39,10 +41,12 @@ class AuthCubit extends Cubit<AuthState> {
     await _repository.signUp(data).then((_) {
       emit(SuccessAuthState());
     }).catchError((error) {
-      emit(ErrorAuthState(
-        message: (error as ExceptionWithMessage).message,
-        email: email,
-      ));
+      emit(
+        ErrorAuthState(
+          message: (error as ExceptionWithMessage).message,
+          email: email,
+        ),
+      );
     });
   }
 
@@ -52,9 +56,11 @@ class AuthCubit extends Cubit<AuthState> {
     await _repository.logout().then((_) {
       emit(UnAuthState());
     }).catchError((error) {
-      emit(ErrorAuthState(
-        message: (error as ExceptionWithMessage).message,
-      ));
+      emit(
+        ErrorAuthState(
+          message: (error as ExceptionWithMessage).message,
+        ),
+      );
     });
   }
 

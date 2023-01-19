@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../logic/models/product.dart';
-import '../themes/app_theme.dart';
 import '../themes/grid_theme.dart';
 import '../themes/list_view_theme.dart';
 import '../widgets/product_card.dart';
@@ -25,7 +24,7 @@ class HomePage extends StatelessWidget {
                   delegate: SliverChildListDelegate(
                     [
                       SizedBox(
-                          height: listViewTheme.paddingBetweenElements / 2),
+                          height: listViewTheme.paddingBetweenElements / 2,),
                       Text(
                         'Recommended for You',
                         style: Theme.of(context).textTheme.headlineMedium,

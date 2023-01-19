@@ -1,6 +1,5 @@
 import 'dart:ui' as ui;
 
-import 'package:chair_store/ui/themes/page_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,6 +8,7 @@ import 'filled_button_theme.dart';
 import 'form_theme.dart';
 import 'grid_theme.dart';
 import 'list_view_theme.dart';
+import 'page_theme.dart';
 import 'product_card_theme.dart';
 import 'shaded_navigation_panel_selected_item_theme.dart';
 import 'shaded_navigation_panel_theme.dart';
@@ -229,7 +229,9 @@ class AppTheme {
       ),
       DetailsPageTheme(
         backgroundColor: _defaultProductBackground,
-        bottomSheetRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        bottomSheetRadius: const BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
         bottomSheetBackgroundColor: const Color(0xffffffff),
       ),
       _pageTheme,

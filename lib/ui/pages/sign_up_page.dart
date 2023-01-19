@@ -4,16 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import '../themes/form_theme.dart';
-import '../themes/list_view_theme.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
 import '../cubits/auth_cubit/auth_state.dart';
+import '../themes/form_theme.dart';
 import '../widgets/loading_mask.dart';
 import '../widgets/modals/error_modal.dart';
 import '../widgets/page_title.dart';
 import '../widgets/sign_up_page /sign_up_form.dart';
 import 'home_tabs_page.dart';
-import 'login_page.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});

@@ -1,4 +1,3 @@
-import '../../logic/models/user_data.dart';
 import 'exception_with_message_exception.dart';
 
 class InvalidEmailException extends ExceptionWithMessage {

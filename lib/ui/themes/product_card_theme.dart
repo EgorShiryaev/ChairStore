@@ -18,13 +18,13 @@ class ProductCardTheme extends ThemeExtension<ProductCardTheme> {
     Color? backgroundColor,
     TextStyle? titleStyle,
     TextStyle? bodyStyle,
-    BorderRadius? bottomSheetRadius,
+    BorderRadius? radius,
   }) {
     return ProductCardTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       bodyStyle: bodyStyle ?? this.bodyStyle,
       titleStyle: titleStyle ?? this.titleStyle,
-      radius: bottomSheetRadius ?? this.radius,
+      radius: radius ?? this.radius,
     );
   }
 

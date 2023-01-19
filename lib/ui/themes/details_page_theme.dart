@@ -21,7 +21,7 @@ class DetailsPageTheme extends ThemeExtension<DetailsPageTheme> {
         backgroundColor: backgroundColor ?? this.backgroundColor,
         bottomSheetRadius: bottomSheetRadius ?? this.bottomSheetRadius,
         bottomSheetBackgroundColor:
-            bottomSheetBackgroundColor ?? this.bottomSheetBackgroundColor);
+            bottomSheetBackgroundColor ?? this.bottomSheetBackgroundColor,);
   }
 
   @override

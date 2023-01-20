@@ -4,6 +4,7 @@ import '../../core/exceptions/email_already_in_use_exception.dart';
 import '../../core/exceptions/invalid_email_exception.dart';
 import '../../core/exceptions/no_auth_data_exception.dart';
 import '../../core/exceptions/technical_exception.dart';
+import '../../core/exceptions/too_many_requests_exception.dart';
 import '../../core/exceptions/user_disabled_exception.dart';
 import '../../core/exceptions/user_not_found_exception.dart';
 import '../../core/exceptions/weak_password_exception.dart';
@@ -11,6 +12,8 @@ import '../../core/exceptions/wrong_password_exception.dart';
 import '../datasources/auth_remote_datasource.dart';
 import '../datasources/secure_local_datasource.dart';
 import '../models/user_data.dart';
+
+String? userEmail;
 
 class AuthRepository {
   final AuthRemoteDatasource _authRemoteDatasource;
@@ -22,7 +25,7 @@ class AuthRepository {
   })  : _authRemoteDatasource = authRemoteDatasource,
         _secureLocalDatasource = secureLocalDatasource;
 
-  void _exceptionHandler(Object exception) {
+  void _exceptionHandler(Object exception, {UserData? user}) {
     if (exception is FirebaseAuthException) {
       switch (exception.code) {
         case 'invalid-email':
@@ -32,25 +35,26 @@ class AuthRepository {
         case 'email-already-in-use':
           throw EmailAlreadyInUseException();
         case 'user-not-found':
-          throw UserNotFoundException();
+          throw UserNotFoundException(user: user);
         case 'user-disabled':
-          throw UserDisabledException();
+          throw UserDisabledException(user: user);
         case 'wrong-password':
-          throw WrongPasswordException();
+          throw WrongPasswordException(user: user);
         case 'too-many-requests':
-          throw WrongPasswordException();
+          throw TooManyRequestsException(user: user);
         case 'operation-not-allowed':
-          throw TechnicalException();
+          throw TechnicalException(user: user);
         default:
-          throw TechnicalException();
+          throw TechnicalException(user: user);
       }
     }
-    throw TechnicalException();
+    throw TechnicalException(user: user);
   }
 
   Future<void> login(UserData data) async {
     try {
-      await _authRemoteDatasource.login(data);
+      final credential = await _authRemoteDatasource.login(data);
+      userEmail = credential.user!.email;
       await _secureLocalDatasource.saveUserData(data);
     } catch (e) {
       _exceptionHandler(e);
@@ -59,7 +63,8 @@ class AuthRepository {
 
   Future<void> signUp(UserData data) async {
     try {
-      await _authRemoteDatasource.signUp(data);
+      final credential = await _authRemoteDatasource.signUp(data);
+      userEmail = credential.user!.email;
       await _secureLocalDatasource.saveUserData(data);
     } catch (e) {
       _exceptionHandler(e);
@@ -69,6 +74,7 @@ class AuthRepository {
   Future<void> logout() async {
     try {
       await _authRemoteDatasource.logout();
+      userEmail = null;
       await _secureLocalDatasource.deleteUser();
     } catch (e) {
       _exceptionHandler(e);
@@ -80,7 +86,8 @@ class AuthRepository {
       final user = await _secureLocalDatasource.user;
 
       if (user != null) {
-        await _authRemoteDatasource.login(user);
+        final credential = await _authRemoteDatasource.login(user);
+        userEmail = credential.user!.email;
       } else {
         throw NoAuthDataException();
       }
@@ -88,7 +95,8 @@ class AuthRepository {
       if (e is NoAuthDataException) {
         throw NoAuthDataException();
       }
-      _exceptionHandler(e);
+      final user = await _secureLocalDatasource.user;
+      _exceptionHandler(e, user: user);
     }
   }
 }

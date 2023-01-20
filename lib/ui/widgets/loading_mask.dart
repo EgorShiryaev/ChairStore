@@ -5,14 +5,11 @@ class LoadingMask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ColoredBox(
-        color:
-            Theme.of(context).progressIndicatorTheme.refreshBackgroundColor ??
-                Colors.white,
-        child: const Center(
-          child: CircularProgressIndicator(),
-        ),
+    return ColoredBox(
+      color: ProgressIndicatorTheme.of(context).refreshBackgroundColor ??
+          Colors.white,
+      child: const Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }

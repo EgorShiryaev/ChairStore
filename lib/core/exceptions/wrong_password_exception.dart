@@ -1,5 +1,8 @@
-import 'exception_with_message_exception.dart';
+import 'exception_with_user_data.dart';
 
-class WrongPasswordException extends ExceptionWithMessage {
-  WrongPasswordException() : super(message: 'Wrong password');
+class WrongPasswordException extends ExceptionWithUserData {
+  WrongPasswordException({super.user})
+      : super(
+          message: 'Wrong password',
+        );
 }

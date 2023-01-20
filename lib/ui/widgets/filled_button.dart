@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app_theme.dart';
+import '../themes/filled_button_theme.dart';
 
 class FilledButton extends StatelessWidget {
   final String label;
@@ -13,32 +13,21 @@ class FilledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: AppTheme.elevation,
-      borderRadius: AppTheme.filledButtonBorderRadius,
-      child: InkWell(
-        splashColor: Theme.of(context).colorScheme.onTertiary,
-        borderRadius: AppTheme.filledButtonBorderRadius,
-        onTap: onPress,
-        child: Container(
-          height: 44,
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-            borderRadius: AppTheme.filledButtonBorderRadius,
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xffA95EFA),
-                Color(0xff8A49F7),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Center(
-            child: Text(
-              label.toUpperCase(),
-              style: AppTheme.filledButtonTexStyle,
-            ),
+    final filledButtonTheme = Theme.of(context).extension<FilledButtonTheme>()!;
+    return InkWell(
+      onTap: onPress,
+      child: Container(
+        height: filledButtonTheme.height,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          borderRadius: filledButtonTheme.borderRadius,
+          gradient: filledButtonTheme.backgroundGradient,
+          boxShadow: [filledButtonTheme.boxShadow],
+        ),
+        child: Center(
+          child: Text(
+            label.toUpperCase(),
+            style: filledButtonTheme.labelStyle,
           ),
         ),
       ),

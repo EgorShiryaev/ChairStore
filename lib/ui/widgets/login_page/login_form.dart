@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../app_theme.dart';
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../pages/sign_up_page.dart';
+import '../../themes/form_theme.dart';
 import '../fields/obscured_text_field.dart';
 import '../fields/shaded_text_field.dart';
 import '../filled_button.dart';
 import '../text_button_with_icon.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  const LoginForm({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+  });
 
   @override
   LoginFormState createState() => LoginFormState();
@@ -19,16 +25,11 @@ class LoginForm extends StatefulWidget {
 class LoginFormState extends State<LoginForm> {
   final formKey = GlobalKey<FormState>();
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
     super.dispose();
@@ -58,8 +59,8 @@ class LoginFormState extends State<LoginForm> {
   void login() {
     if (formKey.currentState!.validate()) {
       BlocProvider.of<AuthCubit>(context).login(
-        emailController.text,
-        passwordController.text,
+        widget.emailController.text,
+        widget.passwordController.text,
       );
     }
   }
@@ -79,6 +80,7 @@ class LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    final formTheme = Theme.of(context).extension<FormTheme>()!;
     return Form(
       key: formKey,
       child: Column(
@@ -88,33 +90,32 @@ class LoginFormState extends State<LoginForm> {
             label: 'Email',
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            controller: emailController,
+            controller: widget.emailController,
             focusNode: emailFocusNode,
             validator: emailValidator,
             submit: submitEmailField,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           ObscuredTextField(
             label: 'Password',
             keyboardType: TextInputType.visiblePassword,
             textInputAction: TextInputAction.done,
-            controller: passwordController,
+            controller: widget.passwordController,
             focusNode: passwordFocusNode,
             validator: passwordValidator,
             submit: submitPasswordField,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           TextButtonWithIcon(
             text: 'Don`t have an account?',
             icon: Icons.arrow_right_alt,
             onPress: navigateToSignUpPage,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
+          SizedBox(height: formTheme.paddingBetweenElements),
           FilledButton(
             label: 'Login',
             onPress: login,
           ),
-          const SizedBox(height: AppTheme.formElementsOffset),
         ],
       ),
     );

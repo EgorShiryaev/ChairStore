@@ -1,4 +1,4 @@
-import 'exception_with_user_data.dart';
+import 'auth_exceptions/exception_with_user_data.dart';
 
 class TooManyRequestsException extends ExceptionWithUserData {
   TooManyRequestsException({super.user})

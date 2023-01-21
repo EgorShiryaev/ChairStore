@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Product {
+  late final String? id;
   final String title;
   final double price;
   final String description;
@@ -11,6 +14,23 @@ class Product {
     required this.description,
     required this.imageUrl,
   }) : priceForUi = _convertDoubleToPriceFormat(price);
+
+  factory Product.fromSnapshot(
+    QueryDocumentSnapshot<Map<String, dynamic>> snapshot,
+  ) {
+    final product = Product.fromJson(snapshot.data());
+    product.id = snapshot.id;
+    return product;
+  }
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      title: json['title'],
+      price: json['price'],
+      description: json['description'],
+      imageUrl: json['imageUrl'],
+    );
+  }
 
   static String _convertDoubleToPriceFormat(double value) {
     final splitedValues = value.toStringAsFixed(2).split('.');

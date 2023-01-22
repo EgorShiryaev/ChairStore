@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../themes/page_theme.dart';
+import '../remote_asset.dart';
 
 class ProductImage extends StatelessWidget {
   final String url;
@@ -19,11 +20,10 @@ class ProductImage extends StatelessWidget {
       child: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
-          constraints: constraints,
-          child: Image.asset(
-            'assets/images/$url.png',
-          ),
-        ),
+            constraints: constraints,
+            child: RemoteAsset(
+              imagePath: url,
+            )),
       ),
     );
   }

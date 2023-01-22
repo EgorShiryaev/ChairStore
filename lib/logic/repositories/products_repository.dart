@@ -66,9 +66,8 @@ class ProductsRepository {
         default:
           return TechnicalException();
       }
-    } else {
-      return TechnicalException();
     }
+    return TechnicalException();
   }
 
   Future<List<Product>> getAll() async {

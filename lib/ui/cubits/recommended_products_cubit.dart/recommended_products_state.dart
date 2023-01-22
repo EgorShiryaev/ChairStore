@@ -12,8 +12,6 @@ class LoadedRecommendedProductsState extends RecommendedProductsState {
   LoadedRecommendedProductsState({required this.products});
 }
 
-class EmptyRecommendedProductsState extends RecommendedProductsState {}
-
 class ErrorRecommendedProductsState extends RecommendedProductsState {
   final String message;
 

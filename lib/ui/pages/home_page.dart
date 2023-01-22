@@ -11,8 +11,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RecommendedProductsCibit>(
-      create: (context) =>
-          getIt<RecommendedProductsCibit>()..loadRecommendedProducts(),
+      create: (context) {
+        return getIt<RecommendedProductsCibit>()..loadRecommendedProducts();
+      },
       child: const Scaffold(
         body: SafeArea(
           bottom: false,

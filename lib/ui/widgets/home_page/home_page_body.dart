@@ -21,6 +21,11 @@ class _HomePageBodyState extends State<HomePageBody> {
         .loadRecommendedProducts();
   }
 
+  Future<void> refresh() {
+    return BlocProvider.of<RecommendedProductsCibit>(context)
+        .refreshRecommendedProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RecommendedProductsCibit, RecommendedProductsState>(
@@ -33,11 +38,14 @@ class _HomePageBodyState extends State<HomePageBody> {
             retry: retryLoad,
           );
         } else if (state is LoadedRecommendedProductsState) {
-          return CustomScrollView(
-            slivers: [
-              const ProductWrapTitle(title: 'Recommended for You'),
-              ProductsWrap(products: state.products)
-            ],
+          return RefreshIndicator(
+            onRefresh: refresh,
+            child: CustomScrollView(
+              slivers: [
+                const ProductWrapTitle(title: 'Recommended for You'),
+                ProductsWrap(products: state.products)
+              ],
+            ),
           );
         }
         return ErrorMask(

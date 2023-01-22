@@ -22,4 +22,16 @@ class RecommendedProductsCibit extends Cubit<RecommendedProductsState> {
       );
     });
   }
+
+  Future<void> refreshRecommendedProducts() async {
+    await _repository.getRecommeded().then((value) {
+      emit(LoadedRecommendedProductsState(products: value));
+    }).catchError((error) {
+      emit(
+        ErrorRecommendedProductsState(
+          message: (error as ExceptionWithMessage).message,
+        ),
+      );
+    });
+  }
 }

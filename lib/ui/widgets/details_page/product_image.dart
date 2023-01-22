@@ -20,10 +20,9 @@ class ProductImage extends StatelessWidget {
       child: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
-            constraints: constraints,
-            child: RemoteAsset(
-              imagePath: url,
-            )),
+          constraints: constraints,
+          child: RemoteAsset(imagePath: url),
+        ),
       ),
     );
   }

@@ -8,8 +8,7 @@ class AuthRemoteDatasource {
 
   AuthRemoteDatasource({
     required FirebaseAuth service,
-  })  : _service = service,
-        super();
+  }) : _service = service;
 
   Future<UserCredential> login(UserData data) {
     log('${data.email}: ${data.password}');

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../logic/repositories/auth_repository.dart';
-import '../../themes/list_view_theme.dart';
-import '../asset_icon.dart';
+import '../../../../logic/repositories/auth_repository.dart';
+import '../../../themes/list_view_theme.dart';
+import '../../asset_icon.dart';
 
 class ProfilePageBody extends StatelessWidget {
   const ProfilePageBody({super.key});

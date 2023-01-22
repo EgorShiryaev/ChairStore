@@ -1,5 +1,4 @@
-
-import 'exception_with_user_data.dart';
+import 'auth_exceptions/exception_with_user_data.dart';
 
 class TechnicalException extends ExceptionWithUserData {
   TechnicalException({super.user})

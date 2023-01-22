@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../logic/models/product.dart';
-import '../../themes/details_page_theme.dart';
-import '../../themes/page_theme.dart';
-import '../filled_button.dart';
+import '../../../../logic/models/product.dart';
+import '../../../themes/details_page_theme.dart';
+import '../../../themes/page_theme.dart';
+import '../../filled_button.dart';
 import 'bottom_sheet_top_indicator.dart';
 
 class DetailsBottomSheet extends StatelessWidget {

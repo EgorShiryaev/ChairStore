@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/models/navigation_tab_item.dart';
 import '../widgets/shaded_navigation_panel/shaded_navigation_panel.dart';

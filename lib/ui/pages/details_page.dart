@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../themes/details_page_theme.dart';
 import '../widgets/asset_icon.dart';
-import '../widgets/details_page/details_page_body.dart';
+import '../widgets/pages/details_page/details_page_body.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});

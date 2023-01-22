@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../logic/models/page_arguments/details_page_arguments.dart';
+import '../../../../logic/models/page_arguments/details_page_arguments.dart';
 import 'details_bottom_sheet.dart';
 import 'product_image.dart';
 

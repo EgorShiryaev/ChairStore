@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/search_field_theme.dart';
+import '../../../themes/search_field_theme.dart';
 
 class SearchField extends StatefulWidget {
   final String value;

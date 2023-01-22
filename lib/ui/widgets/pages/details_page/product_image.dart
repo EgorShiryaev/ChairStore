@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/page_theme.dart';
-import '../remote_asset.dart';
+import '../../../themes/page_theme.dart';
+import '../../remote_asset.dart';
 
 class ProductImage extends StatelessWidget {
   final String url;

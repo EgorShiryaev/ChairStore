@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/recommended_products_cubit.dart/recommended_products_cubit.dart';
-import '../../cubits/recommended_products_cubit.dart/recommended_products_state.dart';
-import '../product_widgets/product_wrap_title.dart';
-import '../product_widgets/products_wrap.dart';
-import '../state_widgets/error_mask.dart';
-import '../state_widgets/loading_mask.dart';
+import '../../../cubits/recommended_products_cubit.dart/recommended_products_cubit.dart';
+import '../../../cubits/recommended_products_cubit.dart/recommended_products_state.dart';
+import '../../product_widgets/product_wrap_title.dart';
+import '../../product_widgets/products_wrap.dart';
+import '../../state_widgets/error_mask.dart';
+import '../../state_widgets/loading_mask.dart';
 
 class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key});

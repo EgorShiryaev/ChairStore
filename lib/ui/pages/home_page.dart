@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../dependency_injection.dart';
 import '../cubits/recommended_products_cubit.dart/recommended_products_cubit.dart';
-import '../widgets/home_page/home_page_body.dart';
+import '../widgets/pages/home_page/home_page_body.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

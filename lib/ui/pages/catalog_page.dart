@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../logic/models/product.dart';
 import '../themes/list_view_theme.dart';
-import '../widgets/catalog_page/search_field.dart';
+import '../widgets/pages/catalog_page/search_field.dart';
 import '../widgets/product_widgets/product_wrap_title.dart';
 import '../widgets/product_widgets/products_wrap.dart';
 

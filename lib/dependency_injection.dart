@@ -9,6 +9,7 @@ import 'logic/datasources/secure_local_datasource.dart';
 import 'logic/repositories/auth_repository.dart';
 import 'logic/repositories/products_repository.dart';
 import 'ui/cubits/auth_cubit/auth_cubit.dart';
+import 'ui/cubits/catalog_cubit.dart/catalog_cubit.dart';
 import 'ui/cubits/recommended_products_cubit.dart/recommended_products_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -16,6 +17,7 @@ final getIt = GetIt.instance;
 void setupDependency() {
   _authCubitDependency();
   _recommendedProductsCubitDependency();
+  _catalogCubitDependency();
 }
 
 void _authCubitDependency() {
@@ -47,5 +49,11 @@ void _recommendedProductsCubitDependency() {
   );
   getIt.registerLazySingleton<ProductsRemoteDatasource>(
     () => ProductsRemoteDatasource(service: FirebaseFirestore.instance),
+  );
+}
+
+void _catalogCubitDependency() {
+  getIt.registerFactory<CatalogCubit>(
+    () => CatalogCubit(repository: getIt()),
   );
 }

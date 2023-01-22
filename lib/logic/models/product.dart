@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Product {
-  late final String? id;
+  late final String id;
   final String title;
   final double price;
   final String description;

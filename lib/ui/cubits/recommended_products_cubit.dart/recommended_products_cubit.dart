@@ -10,7 +10,7 @@ class RecommendedProductsCibit extends Cubit<RecommendedProductsState> {
       : _repository = repository,
         super(InitialRecommendedProductsState());
 
-  void loadRecommendedProducts() {
+  void loadAll() {
     emit(LoadingRecommendedProductsState());
     _repository.getRecommeded().then((value) {
       emit(LoadedRecommendedProductsState(products: value));
@@ -23,7 +23,7 @@ class RecommendedProductsCibit extends Cubit<RecommendedProductsState> {
     });
   }
 
-  Future<void> refreshRecommendedProducts() async {
+  Future<void> refresh() async {
     await _repository.getRecommeded().then((value) {
       emit(LoadedRecommendedProductsState(products: value));
     }).catchError((error) {

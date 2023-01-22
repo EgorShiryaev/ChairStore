@@ -26,7 +26,11 @@ class ProductsWrap extends StatelessWidget {
         ),
         delegate: SliverChildBuilderDelegate(
           (context, index) {
-            return ProductCard(product: products[index]);
+            final product = products[index];
+            return ProductCard(
+              key: Key(product.id),
+              product: product,
+            );
           },
           childCount: products.length,
         ),

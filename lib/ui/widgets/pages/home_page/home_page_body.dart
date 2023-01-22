@@ -17,13 +17,11 @@ class HomePageBody extends StatefulWidget {
 
 class _HomePageBodyState extends State<HomePageBody> {
   void retryLoad() {
-    BlocProvider.of<RecommendedProductsCibit>(context)
-        .loadRecommendedProducts();
+    BlocProvider.of<RecommendedProductsCibit>(context).loadAll();
   }
 
   Future<void> refresh() {
-    return BlocProvider.of<RecommendedProductsCibit>(context)
-        .refreshRecommendedProducts();
+    return BlocProvider.of<RecommendedProductsCibit>(context).refresh();
   }
 
   @override

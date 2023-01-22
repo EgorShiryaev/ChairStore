@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:uuid/uuid.dart';
 
 class RemoteAsset extends StatefulWidget {
   final String imagePath;
@@ -8,8 +9,6 @@ class RemoteAsset extends StatefulWidget {
     super.key,
     required this.imagePath,
   });
-
-  static final _storageRef = FirebaseStorage.instance.ref();
 
   @override
   State<RemoteAsset> createState() => _RemoteAssetState();
@@ -20,38 +19,35 @@ class _RemoteAssetState extends State<RemoteAsset> {
     setState(() {});
   }
 
+  static final _storageRef = FirebaseStorage.instance.ref();
+
   @override
   Widget build(BuildContext context) {
-    final imageUrl = RemoteAsset._storageRef.child(widget.imagePath);
+    final imageUrl = _storageRef.child(widget.imagePath);
+
+    final errorWidget = IconButton(
+      onPressed: reload,
+      icon: const Icon(Icons.replay_outlined),
+    );
+
+    const loadingWidget = Center(child: CircularProgressIndicator());
 
     return FutureBuilder(
       future: imageUrl.getDownloadURL(),
       builder: (context, snapshot) {
         if (snapshot.error != null) {
-          return IconButton(
-            onPressed: reload,
-            icon: const Icon(Icons.replay_outlined),
-          );
+          return errorWidget;
         }
 
         if (!snapshot.hasData) {
-          return const Center(child: CircularProgressIndicator());
+          return loadingWidget;
         }
-        return Image.network(
-          snapshot.data ?? '',
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) {
-              return child;
-            }
-            return Center(
-              child: CircularProgressIndicator(
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
-              ),
-            );
-          },
+        final url = snapshot.data ?? '';
+        return CachedNetworkImage(
+          cacheKey: url.isNotEmpty ? url : const Uuid().v4(),
+          imageUrl: url,
+          placeholder: (context, url) => loadingWidget,
+          errorWidget: (context, url, error) => errorWidget,
         );
       },
     );

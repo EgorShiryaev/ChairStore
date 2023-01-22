@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<RecommendedProductsCibit>(
       create: (context) {
-        return getIt<RecommendedProductsCibit>()..loadRecommendedProducts();
+        return getIt<RecommendedProductsCibit>()..loadAll();
       },
       child: const Scaffold(
         body: SafeArea(

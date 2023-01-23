@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'cart_item_card_theme.dart';
 import 'details_page_theme.dart';
 import 'filled_button_theme.dart';
 import 'form_theme.dart';
@@ -79,7 +80,7 @@ class AppTheme {
       color: Color(0xff9B9B9B),
       letterSpacing: _defaultLetterSpacing,
     ),
-    labelSmall:  const TextStyle(
+    labelSmall: const TextStyle(
       fontSize: 12,
       color: Color(0x66171717),
       letterSpacing: _defaultLetterSpacing,
@@ -244,6 +245,11 @@ class AppTheme {
       SearchFieldTheme(
         fillColor: const Color(0xffF3F6F8),
         radius: BorderRadius.circular(12),
+      ),
+      CartItemCardTheme(
+        paddingBetweensElements: 8,
+        imageSize: 100,
+        padding: const EdgeInsets.symmetric(vertical: 12),
       )
     ],
   );

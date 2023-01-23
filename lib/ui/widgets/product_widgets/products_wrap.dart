@@ -7,7 +7,13 @@ import 'product_card.dart';
 
 class ProductsWrap extends StatelessWidget {
   final List<Product> products;
-  const ProductsWrap({super.key, required this.products});
+  final void Function(Product) onPress;
+
+  const ProductsWrap({
+    super.key,
+    required this.products,
+    required this.onPress,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,7 @@ class ProductsWrap extends StatelessWidget {
             return ProductCard(
               key: Key(product.id),
               product: product,
+              onPress: () => onPress(product),
             );
           },
           childCount: products.length,

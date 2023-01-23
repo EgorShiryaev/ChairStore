@@ -10,12 +10,13 @@ import 'login_page.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  static const tabIndex = 3;
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  
   void logout() {
     BlocProvider.of<AuthCubit>(context).logout();
   }

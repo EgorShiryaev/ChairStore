@@ -18,7 +18,9 @@ class DetailsPage extends StatelessWidget {
         actions: [
           IconButton(
             tooltip: 'Cart',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context, true);
+            },
             icon: const AssetIcon(iconName: 'cart'),
           ),
         ],

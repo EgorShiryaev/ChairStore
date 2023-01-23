@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../logic/models/product.dart';
+import '../../../cubits/cart_cubit/cart_cubit.dart';
 import '../../../themes/details_page_theme.dart';
 import '../../../themes/page_theme.dart';
 import '../../filled_button.dart';
 import 'bottom_sheet_top_indicator.dart';
 
-class DetailsBottomSheet extends StatelessWidget {
+class DetailsBottomSheet extends StatefulWidget {
   final Product product;
   final BoxConstraints placeholderConstraints;
   const DetailsBottomSheet({
@@ -14,6 +16,15 @@ class DetailsBottomSheet extends StatelessWidget {
     required this.product,
     required this.placeholderConstraints,
   });
+
+  @override
+  State<DetailsBottomSheet> createState() => _DetailsBottomSheetState();
+}
+
+class _DetailsBottomSheetState extends State<DetailsBottomSheet> {
+  void addProductToCart() {
+    BlocProvider.of<CartCubit>(context).add(widget.product);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +50,23 @@ class DetailsBottomSheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const BottomSheetTopIndicator(),
-                  Text(product.title, style: textTheme.headlineLarge),
+                  Text(widget.product.title, style: textTheme.headlineLarge),
                   SizedBox(height: paddingBetweenText),
-                  Text(product.priceForUi, style: textTheme.headlineSmall),
+                  Text(widget.product.priceForUi, style: textTheme.headlineSmall),
                   SizedBox(height: paddingBetweenText),
-                  Text(product.description, style: textTheme.bodyMedium),
+                  Text(widget.product.description, style: textTheme.bodyMedium),
                   SizedBox(height: pageTheme.paddingBetweenElements),
-                  FilledButton(label: 'Add to cart', onPress: () {})
+                  FilledButton(
+                    label: 'Add to cart',
+                    onPress: addProductToCart,
+                  )
                 ],
               ),
             ),
           ),
         ),
         ConstrainedBox(
-          constraints: placeholderConstraints,
+          constraints: widget.placeholderConstraints,
           child: const AspectRatio(
             aspectRatio: 1,
             child: SizedBox(),

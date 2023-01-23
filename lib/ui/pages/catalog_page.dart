@@ -7,7 +7,13 @@ import '../widgets/pages/catalog_page/app_bar_catalog_page.dart';
 import '../widgets/pages/catalog_page/catalog_page_body.dart';
 
 class CatalogPage extends StatelessWidget {
-  const CatalogPage({super.key});
+  final void Function(int) selectNewIndex;
+  const CatalogPage({
+    super.key,
+    required this.selectNewIndex,
+  });
+
+  static const tabIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +28,9 @@ class CatalogPage extends StatelessWidget {
           preferredSize: Size.fromHeight(height),
           child: const AppBarCatalogPage(),
         ),
-        body: const SafeArea(
+        body: SafeArea(
           bottom: false,
-          child: CatalogPageBody(),
+          child: CatalogPageBody(selectNewIndex: selectNewIndex),
         ),
       ),
     );

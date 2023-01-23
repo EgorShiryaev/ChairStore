@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../logic/models/page_arguments/details_page_arguments.dart';
 import '../../../../logic/models/product.dart';
 import '../../../cubits/catalog_cubit.dart/catalog_cubit.dart';
 import '../../../cubits/catalog_cubit.dart/catalog_state.dart';
+import '../../../pages/cart_page.dart';
+import '../../../pages/details_page.dart';
 import '../../product_widgets/product_wrap_title.dart';
 import '../../product_widgets/products_wrap.dart';
 import '../../state_widgets/error_mask.dart';
 import '../../state_widgets/loading_mask.dart';
 
 class CatalogPageBody extends StatefulWidget {
-  const CatalogPageBody({super.key});
+  final void Function(int) selectNewIndex;
+  const CatalogPageBody({super.key, required this.selectNewIndex});
 
   @override
   State<CatalogPageBody> createState() => _CatalogPageBodyState();
@@ -23,6 +27,18 @@ class _CatalogPageBodyState extends State<CatalogPageBody> {
 
   Future<void> refresh() {
     return BlocProvider.of<CatalogCubit>(context).refresh();
+  }
+
+  void navigateToDetailsPage(Product product) {
+    Navigator.pushNamed(
+      context,
+      DetailsPage.routeName,
+      arguments: DetailsPageArguments(product: product),
+    ).then((value) {
+      if (value == true) {
+        widget.selectNewIndex(CartPage.tabIndex);
+      }
+    });
   }
 
   @override
@@ -54,7 +70,10 @@ class _CatalogPageBodyState extends State<CatalogPageBody> {
                   ProductWrapTitle(
                     title: 'Found ${state.products.length} results',
                   ),
-                ProductsWrap(products: products),
+                ProductsWrap(
+                  products: products,
+                  onPress: navigateToDetailsPage,
+                ),
               ],
             ),
           );

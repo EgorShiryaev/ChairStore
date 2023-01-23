@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/exceptions/index.dart';
+import '../../core/exceptions/no_internet_connection_exception.dart';
 import '../datasources/auth_remote_datasource.dart';
 import '../datasources/secure_local_datasource.dart';
 import '../models/user_data.dart';
@@ -37,6 +38,9 @@ class AuthRepository {
         case 'operation-not-allowed':
           return TechnicalException(user: user);
       }
+    }
+    if (exception is NoInternetConnectionException) {
+      return exception;
     }
     return TechnicalException(user: user);
   }
@@ -86,7 +90,7 @@ class AuthRepository {
         rethrow;
       }
       final user = await _secureLocalDatasource.user;
-      _exceptionHandler(e, user: user);
+      throw _exceptionHandler(e, user: user);
     }
   }
 }

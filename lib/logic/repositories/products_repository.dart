@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../core/exceptions/index.dart';
+import '../../core/exceptions/no_internet_connection_exception.dart';
 import '../datasources/products_remote_datasource.dart';
 import '../models/product.dart';
 
@@ -52,6 +53,9 @@ class ProductsRepository {
         default:
           return TechnicalException();
       }
+    }
+    if (exception is NoInternetConnectionException) {
+      return exception;
     }
     return TechnicalException();
   }

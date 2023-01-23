@@ -54,4 +54,12 @@ class CartRepository {
       throw _exceptionHandler(e);
     }
   }
+
+  Future<void> clear() async {
+    try {
+      await _localDatasource.clear();
+    } catch (e) {
+      throw _exceptionHandler(e);
+    }
+  }
 }

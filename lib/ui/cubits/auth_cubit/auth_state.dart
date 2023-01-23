@@ -19,3 +19,5 @@ class ErrorAuthState extends AuthState {
 }
 
 class UnAuthState extends AuthState {}
+
+class SuccesUpdateSessionAuthState extends AuthState {}

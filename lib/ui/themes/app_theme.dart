@@ -235,8 +235,8 @@ class AppTheme {
       GridTheme(
         crossAxisSpacing: _pageTheme.paddingBetweenElements,
         mainAxisSpacing: _pageTheme.paddingBetweenElements,
-        maxCrossAxisExtent: 160,
-        mainAxisExtent: 240,
+        maxCrossAxisExtent: 200,
+        mainAxisExtent: 280,
       ),
       DetailsPageTheme(
         backgroundColor: _defaultProductBackground,

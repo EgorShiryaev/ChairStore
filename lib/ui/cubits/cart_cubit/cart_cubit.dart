@@ -51,8 +51,7 @@ class CartCubit extends Cubit<CartState> {
     });
   }
 
-  void incrementQuantity(CartItem item) {
-    item.incrementQuantity();
+  void update(CartItem item) {
     _repository.update(item).then((value) {
       refresh();
     }).catchError((error) {
@@ -60,22 +59,6 @@ class CartCubit extends Cubit<CartState> {
         ErrorCartState(message: (error as ExceptionWithMessage).message),
       );
     });
-  }
-
-  Future<void> decrementQuantity(CartItem item) async {
-    try {
-      item.decrementQuantity();
-      if (item.quantity == 0) {
-        await _repository.delete(item.product.id);
-      } else {
-        await _repository.update(item);
-      }
-      refresh();
-    } catch (error) {
-      emit(
-        ErrorCartState(message: (error as ExceptionWithMessage).message),
-      );
-    }
   }
 
   void delete(CartItem item) {

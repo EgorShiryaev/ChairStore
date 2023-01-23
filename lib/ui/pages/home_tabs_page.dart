@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../dependency_injection.dart';
 import '../../logic/models/navigation_tab_item.dart';
-import '../../logic/models/page_arguments/details_page_arguments.dart';
-import '../../logic/models/product.dart';
 import '../cubits/cart_cubit/cart_cubit.dart';
 import '../widgets/shaded_navigation_panel/shaded_navigation_panel.dart';
 import '../widgets/tab_pages_container.dart';

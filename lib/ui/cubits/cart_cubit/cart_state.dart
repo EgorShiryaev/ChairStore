@@ -1,5 +1,4 @@
 import '../../../logic/models/cart_item.dart';
-import '../../../logic/models/product.dart';
 
 abstract class CartState {}
 

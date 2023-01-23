@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../cubits/cart_cubit/cart_cubit.dart';
 import '../../../cubits/cart_cubit/cart_state.dart';
-import '../../../themes/list_view_theme.dart';
 import '../../../themes/page_theme.dart';
-import '../../filled_button.dart';
 import '../../state_widgets/error_mask.dart';
 import '../../state_widgets/loading_mask.dart';
 import 'cart_items_view.dart';

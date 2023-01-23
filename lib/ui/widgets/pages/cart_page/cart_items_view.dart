@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/price_ui_convector.dart';
 import '../../../../logic/models/cart_item.dart';
+import '../../../cubits/cart_cubit/cart_cubit.dart';
 import '../../../pages/order_page.dart';
 import '../../../themes/filled_button_theme.dart';
 import '../../../themes/list_view_theme.dart';
-import '../../../themes/page_theme.dart';
 import '../../filled_button.dart';
 import 'cart_item_card.dart';
 
@@ -24,16 +25,19 @@ class _CartItemsViewState extends State<CartItemsView> {
   void changeSelectedStatus(CartItem item, bool? newValue) {
     setState(() {});
     item.changeIsSelected();
+    BlocProvider.of<CartCubit>(context).update(item);
   }
 
   void incrementQuantity(CartItem item) {
     setState(() {});
     item.incrementQuantity();
+    BlocProvider.of<CartCubit>(context).update(item);
   }
 
   void decrementQuantity(CartItem item) {
     setState(() {});
     item.decrementQuantity();
+    BlocProvider.of<CartCubit>(context).update(item);
   }
 
   double getCartPrice() {

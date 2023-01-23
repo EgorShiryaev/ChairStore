@@ -193,6 +193,10 @@ class AppTheme {
       color: _defaultIconColor,
       size: 24,
     ),
+    checkboxTheme: CheckboxThemeData(
+      checkColor: MaterialStateProperty.all(colorScheme.onTertiary),
+      fillColor: MaterialStateProperty.all(colorScheme.tertiary),
+    ),
     extensions: <ThemeExtension<dynamic>>[
       FilledButtonTheme(
         borderRadius: _defaultButtonBorderRadius,

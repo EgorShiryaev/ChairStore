@@ -58,7 +58,7 @@ class _DetailsBottomSheetState extends State<DetailsBottomSheet> {
                   Text(widget.product.title, style: textTheme.headlineLarge),
                   SizedBox(height: paddingBetweenText),
                   Text(widget.product.priceForUi,
-                      style: textTheme.headlineSmall),
+                      style: textTheme.headlineSmall,),
                   SizedBox(height: paddingBetweenText),
                   Text(widget.product.description, style: textTheme.bodyMedium),
                   SizedBox(height: pageTheme.paddingBetweenElements),

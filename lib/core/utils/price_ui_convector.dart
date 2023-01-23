@@ -1,4 +1,3 @@
-import '../../logic/models/cart_item.dart';
 
 class PriceUiConvector {
   static String toPriceFormat(double value) {

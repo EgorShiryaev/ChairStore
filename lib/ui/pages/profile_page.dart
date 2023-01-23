@@ -8,7 +8,6 @@ import '../cubits/auth_cubit/auth_state.dart';
 import '../widgets/modals/confirm_modal.dart';
 import '../widgets/modals/error_modal.dart';
 import '../widgets/pages/profile_page/profile_page_body.dart';
-import 'login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

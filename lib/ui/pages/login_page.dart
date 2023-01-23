@@ -13,7 +13,6 @@ import '../widgets/modals/error_modal.dart';
 import '../widgets/page_title.dart';
 import '../widgets/pages/login_page/login_form.dart';
 import '../widgets/state_widgets/loading_mask.dart';
-import 'home_tabs_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -10,7 +10,6 @@ import '../widgets/modals/error_modal.dart';
 import '../widgets/page_title.dart';
 import '../widgets/pages/sign_up_page /sign_up_form.dart';
 import '../widgets/state_widgets/loading_mask.dart';
-import 'home_tabs_page.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});

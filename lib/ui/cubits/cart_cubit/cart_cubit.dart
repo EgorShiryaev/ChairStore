@@ -70,4 +70,12 @@ class CartCubit extends Cubit<CartState> {
       );
     });
   }
+
+  Future<void> clear() {
+    return _repository.clear().catchError((error) {
+      emit(
+        ErrorCartState(message: (error as ExceptionWithMessage).message),
+      );
+    });
+  }
 }

@@ -44,4 +44,9 @@ class CartLocalDatasource {
     final box = await getBox();
     return box.get(productId);
   }
+
+  Future<int> clear() async {
+    final box = await getBox();
+    return box.clear();
+  }
 }

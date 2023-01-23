@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+import '../../core/utils/database_helper.dart';
+import '../../core/utils/navigation_helper.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
 import '../cubits/auth_cubit/auth_state.dart';
 import '../themes/form_theme.dart';
@@ -34,9 +36,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void listener(BuildContext context, AuthState state) {
-    if (state is SuccessAuthState) {
-      Navigator.pushReplacementNamed(context, HomeTabsPage.routeName);
+    if (state is SuccesUpdateSessionAuthState) {
+      NavigationHelper.replacementToHomeTabPage(context);
       Timer(const Duration(milliseconds: 750), FlutterNativeSplash.remove);
+    } else if (state is SuccessAuthState) {
+      DatabaseHelper.clearData(context).whenComplete(
+        () => NavigationHelper.replacementToHomeTabPage(context),
+      );
     } else if (state is ErrorAuthState) {
       ErrorModal.show(context, message: state.message);
       if (state.email != null) {

@@ -20,15 +20,4 @@ class PriceUiConvector {
     }
     return value;
   }
-
-  static String selectedProductsPrice(List<CartItem> items) {
-    var price = 0.0;
-    for (var i = 0; i < items.length; i++) {
-      final item = items[i];
-      if (item.isSelected && item.quantity > 0) {
-        price += item.quantity * item.product.price;
-      }
-    }
-    return toPriceFormat(price);
-  }
 }

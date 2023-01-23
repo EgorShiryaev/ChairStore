@@ -70,6 +70,11 @@ class AppTheme {
       fontWeight: FontWeight.bold,
       letterSpacing: _defaultLetterSpacing,
     ),
+    titleSmall: TextStyle(
+      fontSize: 15,
+      color: colorScheme.primary,
+      letterSpacing: _defaultLetterSpacing,
+    ),
     bodyMedium: TextStyle(
       fontSize: 14,
       color: colorScheme.primary,
@@ -173,12 +178,7 @@ class AppTheme {
         size: 24,
       ),
       systemOverlayStyle: SystemUiOverlayStyle.dark,
-      shape: const Border(
-        bottom: BorderSide(
-          color: Color(0xffF3F6F8),
-          width: 1,
-        ),
-      ),
+      shape: const Border(),
     ),
     scaffoldBackgroundColor: colorScheme.background,
     textTheme: textTheme,

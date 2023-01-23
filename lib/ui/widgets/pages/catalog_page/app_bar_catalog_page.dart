@@ -41,6 +41,12 @@ class _AppBarCatalogPageState extends State<AppBarCatalogPage> {
         preferredSize: Size.fromHeight(8),
         child: SizedBox(),
       ),
+      shape: const Border(
+        bottom: BorderSide(
+          color: Color(0xffF3F6F8),
+          width: 1,
+        ),
+      ),
     );
   }
 }

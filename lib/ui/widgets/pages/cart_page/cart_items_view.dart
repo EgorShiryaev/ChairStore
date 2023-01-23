@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/price_ui_convector.dart';
 import '../../../../logic/models/cart_item.dart';
+import '../../../pages/order_page.dart';
+import '../../../themes/filled_button_theme.dart';
 import '../../../themes/list_view_theme.dart';
 import '../../../themes/page_theme.dart';
 import '../../filled_button.dart';
@@ -34,47 +36,66 @@ class _CartItemsViewState extends State<CartItemsView> {
     item.decrementQuantity();
   }
 
+  double getCartPrice() {
+    var price = 0.0;
+    for (var i = 0; i < widget.items.length; i++) {
+      final item = widget.items[i];
+      if (item.isSelected && item.quantity > 0) {
+        price += item.quantity * item.product.price;
+      }
+    }
+    return price;
+  }
+
   @override
   Widget build(BuildContext context) {
     final listViewTheme = Theme.of(context).extension<ListViewTheme>()!;
-    final pageTheme = Theme.of(context).extension<PageTheme>()!;
-    return Column(
+    final cartPrice = getCartPrice();
+    final uiCartPrice = PriceUiConvector.toPriceFormat(cartPrice);
+    final filledButtonTheme = Theme.of(context).extension<FilledButtonTheme>()!;
+    return Stack(
       children: [
-        Expanded(
-          child: CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: EdgeInsets.only(top: pageTheme.padding.top),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final item = widget.items[index];
-                      return CartItemCard(
-                        item: item,
-                        changeSelectedStatus: (newValue) {
-                          changeSelectedStatus(item, newValue);
-                        },
-                        decrementQuantity: () {
-                          decrementQuantity(item);
-                        },
-                        incrementQuantity: () {
-                          incrementQuantity(item);
-                        },
-                      );
-                    },
-                    childCount: widget.items.length,
-                  ),
+        CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.only(
+                bottom: listViewTheme.padding.bottom + filledButtonTheme.height,
+              ),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final item = widget.items[index];
+                    return CartItemCard(
+                      item: item,
+                      changeSelectedStatus: (newValue) {
+                        changeSelectedStatus(item, newValue);
+                      },
+                      decrementQuantity: () {
+                        decrementQuantity(item);
+                      },
+                      incrementQuantity: () {
+                        incrementQuantity(item);
+                      },
+                    );
+                  },
+                  childCount: widget.items.length,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        Padding(
-          padding: listViewTheme.padding,
-          child: FilledButton(
-            label: 'To order '
-                '${PriceUiConvector.selectedProductsPrice(widget.items)}',
-            onPress: () {},
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: listViewTheme.padding,
+            child: FilledButton(
+              label: 'To order $uiCartPrice',
+              onPress: () {
+                if (cartPrice > 0) {
+                  Navigator.pushNamed(context, OrderPage.routeName);
+                }
+              },
+            ),
           ),
         )
       ],

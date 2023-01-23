@@ -24,7 +24,6 @@ class DetailsPage extends StatelessWidget {
             icon: const AssetIcon(iconName: 'cart'),
           ),
         ],
-        shape: const Border(),
         backgroundColor: detailsPageTheme.backgroundColor,
       ),
       body: const DetailsPageBody(),

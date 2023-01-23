@@ -24,6 +24,11 @@ class DetailsBottomSheet extends StatefulWidget {
 class _DetailsBottomSheetState extends State<DetailsBottomSheet> {
   void addProductToCart() {
     BlocProvider.of<CartCubit>(context).add(widget.product);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${widget.product.title} added to cart'),
+      ),
+    );
   }
 
   @override
@@ -52,7 +57,8 @@ class _DetailsBottomSheetState extends State<DetailsBottomSheet> {
                   const BottomSheetTopIndicator(),
                   Text(widget.product.title, style: textTheme.headlineLarge),
                   SizedBox(height: paddingBetweenText),
-                  Text(widget.product.priceForUi, style: textTheme.headlineSmall),
+                  Text(widget.product.priceForUi,
+                      style: textTheme.headlineSmall),
                   SizedBox(height: paddingBetweenText),
                   Text(widget.product.description, style: textTheme.bodyMedium),
                   SizedBox(height: pageTheme.paddingBetweenElements),

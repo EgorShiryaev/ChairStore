@@ -7,6 +7,7 @@ import 'ui/cubits/cart_cubit/cart_cubit.dart';
 import 'ui/pages/details_page.dart';
 import 'ui/pages/home_tabs_page.dart';
 import 'ui/pages/login_page.dart';
+import 'ui/pages/order_page.dart';
 import 'ui/pages/sign_up_page.dart';
 import 'ui/themes/app_theme.dart';
 
@@ -32,6 +33,7 @@ class App extends StatelessWidget {
           LoginPage.routeName: (context) => const LoginPage(),
           HomeTabsPage.routeName: (context) => const HomeTabsPage(),
           DetailsPage.routeName: (context) => const DetailsPage(),
+          OrderPage.routeName: (context) => const OrderPage(),
         },
         theme: AppTheme.theme,
       ),

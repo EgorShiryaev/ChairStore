@@ -32,6 +32,12 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: const Icon(Icons.logout),
           ),
         ],
+        shape: const Border(
+          bottom: BorderSide(
+            color: Color(0xffF3F6F8),
+            width: 1,
+          ),
+        ),
       ),
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {

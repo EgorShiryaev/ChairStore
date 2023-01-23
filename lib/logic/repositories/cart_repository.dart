@@ -62,4 +62,16 @@ class CartRepository {
       throw _exceptionHandler(e);
     }
   }
+
+  Future<void> deleteOfferedItems() async {
+    try {
+      final allItems = await _localDatasource.getAll();
+      final offeredIds = allItems
+          .where((element) => element.isSelected)
+          .map((e) => e.product.id);
+      await _localDatasource.deleteSeveral(offeredIds);
+    } catch (e) {
+      throw _exceptionHandler(e);
+    }
+  }
 }

@@ -78,4 +78,14 @@ class CartCubit extends Cubit<CartState> {
       );
     });
   }
+
+  void deleteOfferedItems() {
+    _repository.deleteOfferedItems().then((value) {
+      refresh();
+    }).catchError((error) {
+      emit(
+        ErrorCartState(message: (error as ExceptionWithMessage).message),
+      );
+    });
+  }
 }

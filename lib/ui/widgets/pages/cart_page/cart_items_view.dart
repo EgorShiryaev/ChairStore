@@ -97,6 +97,7 @@ class _CartItemsViewState extends State<CartItemsView> {
               onPress: () {
                 if (cartPrice > 0) {
                   Navigator.pushNamed(context, OrderPage.routeName);
+                  BlocProvider.of<CartCubit>(context).deleteOfferedItems();
                 }
               },
             ),

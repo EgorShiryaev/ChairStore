@@ -49,4 +49,9 @@ class CartLocalDatasource {
     final box = await getBox();
     return box.clear();
   }
+
+  Future<void> deleteSeveral(Iterable<String> ids) async {
+    final box = await getBox();
+    return box.deleteAll(ids);
+  }
 }

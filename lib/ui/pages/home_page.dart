@@ -6,7 +6,14 @@ import '../cubits/recommended_products_cubit.dart/recommended_products_cubit.dar
 import '../widgets/pages/home_page/home_page_body.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final void Function(int) selectNewIndex;
+
+  const HomePage({
+    super.key,
+    required this.selectNewIndex,
+  });
+
+  static const tabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +21,10 @@ class HomePage extends StatelessWidget {
       create: (context) {
         return getIt<RecommendedProductsCibit>()..loadAll();
       },
-      child: const Scaffold(
+      child: Scaffold(
         body: SafeArea(
           bottom: false,
-          child: HomePageBody(),
+          child: HomePageBody(selectNewIndex: selectNewIndex),
         ),
       ),
     );

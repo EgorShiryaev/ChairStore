@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../dependency_injection.dart';
 import '../../logic/models/navigation_tab_item.dart';
+import '../../logic/models/page_arguments/details_page_arguments.dart';
+import '../../logic/models/product.dart';
+import '../cubits/cart_cubit/cart_cubit.dart';
 import '../widgets/shaded_navigation_panel/shaded_navigation_panel.dart';
 import '../widgets/tab_pages_container.dart';
+import 'cart_page.dart';
 import 'catalog_page.dart';
 import 'home_page.dart';
 import 'profile_page.dart';
@@ -27,15 +32,21 @@ class _HomeTabsPageState extends State<HomeTabsPage> {
   }
 
   @override
+  void initState() {
+    BlocProvider.of<CartCubit>(context).loadAll();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         TabPagesContainer(
-          pages: const [
-            HomePage(),
-            CatalogPage(),
-            Center(child: Text('Cart')),
-            ProfilePage(),
+          pages: [
+            HomePage(selectNewIndex: selectNewIndex),
+            CatalogPage(selectNewIndex: selectNewIndex),
+            const CartPage(),
+            const ProfilePage(),
           ],
           selectedIndex: selectedIndex,
         ),

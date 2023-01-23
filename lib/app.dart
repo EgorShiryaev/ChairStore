@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'dependency_injection.dart';
 import 'ui/cubits/auth_cubit/auth_cubit.dart';
+import 'ui/cubits/cart_cubit/cart_cubit.dart';
 import 'ui/pages/details_page.dart';
 import 'ui/pages/home_tabs_page.dart';
 import 'ui/pages/login_page.dart';
@@ -18,7 +19,10 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider<AuthCubit>(
           create: (context) => getIt<AuthCubit>()..updateAuthSession(),
-        )
+        ),
+        BlocProvider<CartCubit>(
+          create: (context) => getIt<CartCubit>(),
+        ),
       ],
       child: MaterialApp(
         title: 'ChairStore',

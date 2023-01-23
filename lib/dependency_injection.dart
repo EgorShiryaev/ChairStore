@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'logic/datasources/auth_remote_datasource.dart';
 import 'logic/datasources/cart_local_datasource.dart';
@@ -18,13 +19,14 @@ import 'ui/cubits/recommended_products_cubit.dart/recommended_products_cubit.dar
 final getIt = GetIt.instance;
 
 Future<void> setupDependency() async {
-  _authCubitDependency();
-  _recommendedProductsCubitDependency();
+  final internetConnectionChecker = InternetConnectionChecker();
+  _authCubitDependency(internetConnectionChecker);
+  _recommendedProductsCubitDependency(internetConnectionChecker);
   _catalogCubitDependency();
   _cartCubitDependency();
 }
 
-void _authCubitDependency() {
+void _authCubitDependency(InternetConnectionChecker internetConnectionChecker) {
   getIt.registerFactory<AuthCubit>(
     () => AuthCubit(repository: getIt()),
   );
@@ -35,14 +37,18 @@ void _authCubitDependency() {
     ),
   );
   getIt.registerLazySingleton<AuthRemoteDatasource>(
-    () => AuthRemoteDatasource(service: FirebaseAuth.instance),
+    () => AuthRemoteDatasource(
+      service: FirebaseAuth.instance,
+      internetConnectionChecker: internetConnectionChecker,
+    ),
   );
   getIt.registerLazySingleton<SecureLocalDatasource>(
     () => const SecureLocalDatasource(secureStorage: FlutterSecureStorage()),
   );
 }
 
-void _recommendedProductsCubitDependency() {
+void _recommendedProductsCubitDependency(
+    InternetConnectionChecker internetConnectionChecker,) {
   getIt.registerFactory<RecommendedProductsCibit>(
     () => RecommendedProductsCibit(repository: getIt()),
   );
@@ -52,7 +58,10 @@ void _recommendedProductsCubitDependency() {
     ),
   );
   getIt.registerLazySingleton<ProductsRemoteDatasource>(
-    () => ProductsRemoteDatasource(service: FirebaseFirestore.instance),
+    () => ProductsRemoteDatasource(
+      service: FirebaseFirestore.instance,
+      internetConnectionChecker: internetConnectionChecker,
+    ),
   );
 }
 

@@ -24,7 +24,11 @@ class ErrorMask extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(message),
+            Text(
+              message,
+              style: Theme.of(context).textTheme.titleSmall,
+              textAlign: TextAlign.center,
+            ),
             SizedBox(
               height: pageTheme.paddingBetweenElements,
             ),

@@ -43,6 +43,9 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+
+    archivesBaseName = "ChairStore"
+
     defaultConfig {
          multiDexEnabled true
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).

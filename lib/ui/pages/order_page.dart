@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../themes/page_theme.dart';
-import '../widgets/filled_button.dart';
+import '../widgets/gradient_button.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});

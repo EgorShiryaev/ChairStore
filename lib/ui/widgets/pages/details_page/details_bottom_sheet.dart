@@ -5,7 +5,7 @@ import '../../../../logic/models/product.dart';
 import '../../../cubits/cart_cubit/cart_cubit.dart';
 import '../../../themes/details_page_theme.dart';
 import '../../../themes/page_theme.dart';
-import '../../filled_button.dart';
+import '../../gradient_button.dart';
 import 'bottom_sheet_top_indicator.dart';
 
 class DetailsBottomSheet extends StatefulWidget {
@@ -27,6 +27,7 @@ class _DetailsBottomSheetState extends State<DetailsBottomSheet> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('${widget.product.title} added to cart'),
+        duration: const Duration(milliseconds: 10000),
       ),
     );
   }
@@ -57,8 +58,10 @@ class _DetailsBottomSheetState extends State<DetailsBottomSheet> {
                   const BottomSheetTopIndicator(),
                   Text(widget.product.title, style: textTheme.headlineLarge),
                   SizedBox(height: paddingBetweenText),
-                  Text(widget.product.priceForUi,
-                      style: textTheme.headlineSmall,),
+                  Text(
+                    widget.product.priceForUi,
+                    style: textTheme.headlineSmall,
+                  ),
                   SizedBox(height: paddingBetweenText),
                   Text(widget.product.description, style: textTheme.bodyMedium),
                   SizedBox(height: pageTheme.paddingBetweenElements),

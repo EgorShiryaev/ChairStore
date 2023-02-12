@@ -15,15 +15,19 @@ class GradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final filledButtonTheme =
         Theme.of(context).extension<GradientButtonTheme>()!;
-    return InkWell(
-      onTap: onPress,
-      child: Container(
-        height: filledButtonTheme.height,
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          borderRadius: filledButtonTheme.borderRadius,
-          gradient: filledButtonTheme.backgroundGradient,
-          boxShadow: [filledButtonTheme.boxShadow],
+    return Container(
+      height: filledButtonTheme.height,
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        borderRadius: filledButtonTheme.borderRadius,
+        gradient: filledButtonTheme.backgroundGradient,
+        boxShadow: [filledButtonTheme.boxShadow],
+      ),
+      child: ElevatedButton(
+        onPressed: onPress,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
         ),
         child: Center(
           child: Text(

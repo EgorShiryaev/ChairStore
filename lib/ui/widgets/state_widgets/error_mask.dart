@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../themes/page_theme.dart';
-import '../filled_button.dart';
+import '../gradient_button.dart';
 
 class ErrorMask extends StatelessWidget {
   final String message;

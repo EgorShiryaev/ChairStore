@@ -65,7 +65,7 @@ class _OrderPageState extends State<OrderPage> {
                 ),
               ),
               SizedBox(height: pageTheme.paddingBetweenElements),
-              FilledButton(label: 'Continue shopping', onPress: goBack)
+              GradientButton(label: 'Continue shopping', onPress: goBack)
             ],
           ),
         ),

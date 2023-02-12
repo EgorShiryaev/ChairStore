@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 
 import 'cart_item_card_theme.dart';
 import 'details_page_theme.dart';
-import 'filled_button_theme.dart';
 import 'form_theme.dart';
+import 'grdient_button_theme.dart';
 import 'grid_theme.dart';
 import 'list_view_theme.dart';
 import 'page_theme.dart';
@@ -198,7 +198,7 @@ class AppTheme {
       fillColor: MaterialStateProperty.all(colorScheme.tertiary),
     ),
     extensions: <ThemeExtension<dynamic>>[
-      FilledButtonTheme(
+      GradientButtonTheme(
         borderRadius: _defaultButtonBorderRadius,
         labelStyle: textTheme.titleMedium!.copyWith(
           color: colorScheme.onTertiary,

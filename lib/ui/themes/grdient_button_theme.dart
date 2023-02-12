@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FilledButtonTheme extends ThemeExtension<FilledButtonTheme> {
+class GradientButtonTheme extends ThemeExtension<GradientButtonTheme> {
   final BorderRadius borderRadius;
   final TextStyle labelStyle;
   final BoxShadow boxShadow;
   final Gradient backgroundGradient;
   final double height;
 
-  FilledButtonTheme({
+  GradientButtonTheme({
     required this.borderRadius,
     required this.labelStyle,
     required this.boxShadow,
@@ -16,7 +16,7 @@ class FilledButtonTheme extends ThemeExtension<FilledButtonTheme> {
   });
 
   @override
-  ThemeExtension<FilledButtonTheme> copyWith({
+  ThemeExtension<GradientButtonTheme> copyWith({
     BorderRadius? borderRadius,
     TextStyle? labelStyle,
     double? elevation,
@@ -25,7 +25,7 @@ class FilledButtonTheme extends ThemeExtension<FilledButtonTheme> {
     Gradient? backgroundGradient,
     double? height,
   }) {
-    return FilledButtonTheme(
+    return GradientButtonTheme(
       borderRadius: borderRadius ?? this.borderRadius,
       labelStyle: labelStyle ?? this.labelStyle,
       boxShadow: boxShadow ?? this.boxShadow,
@@ -35,14 +35,14 @@ class FilledButtonTheme extends ThemeExtension<FilledButtonTheme> {
   }
 
   @override
-  ThemeExtension<FilledButtonTheme> lerp(
-    ThemeExtension<FilledButtonTheme>? other,
+  ThemeExtension<GradientButtonTheme> lerp(
+    ThemeExtension<GradientButtonTheme>? other,
     double t,
   ) {
-    if (other is! FilledButtonTheme) {
+    if (other is! GradientButtonTheme) {
       return this;
     }
-    return FilledButtonTheme(
+    return GradientButtonTheme(
       borderRadius: BorderRadius.lerp(borderRadius, other.borderRadius, t)!,
       labelStyle: TextStyle.lerp(labelStyle, other.labelStyle, t)!,
       boxShadow: BoxShadow.lerp(boxShadow, other.boxShadow, t)!,

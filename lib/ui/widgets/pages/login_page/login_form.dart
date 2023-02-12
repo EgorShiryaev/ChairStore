@@ -112,7 +112,7 @@ class LoginFormState extends State<LoginForm> {
             onPress: navigateToSignUpPage,
           ),
           SizedBox(height: formTheme.paddingBetweenElements),
-          FilledButton(
+          GradientButton(
             label: 'Login',
             onPress: login,
           ),

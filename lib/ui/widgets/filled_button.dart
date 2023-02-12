@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../themes/filled_button_theme.dart';
+import '../themes/grdient_button_theme.dart';
 
-class FilledButton extends StatelessWidget {
+class GradientButton extends StatelessWidget {
   final String label;
   final Function() onPress;
-  const FilledButton({
+  const GradientButton({
     super.key,
     required this.label,
     required this.onPress,
@@ -13,7 +13,8 @@ class FilledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filledButtonTheme = Theme.of(context).extension<FilledButtonTheme>()!;
+    final filledButtonTheme =
+        Theme.of(context).extension<GradientButtonTheme>()!;
     return InkWell(
       onTap: onPress,
       child: Container(

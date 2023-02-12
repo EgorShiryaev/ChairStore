@@ -5,7 +5,7 @@ import '../../../../core/utils/price_ui_convector.dart';
 import '../../../../logic/models/cart_item.dart';
 import '../../../cubits/cart_cubit/cart_cubit.dart';
 import '../../../pages/order_page.dart';
-import '../../../themes/filled_button_theme.dart';
+import '../../../themes/grdient_button_theme.dart';
 import '../../../themes/list_view_theme.dart';
 import '../../filled_button.dart';
 import 'cart_item_card.dart';
@@ -56,7 +56,8 @@ class _CartItemsViewState extends State<CartItemsView> {
     final listViewTheme = Theme.of(context).extension<ListViewTheme>()!;
     final cartPrice = getCartPrice();
     final uiCartPrice = PriceUiConvector.toPriceFormat(cartPrice);
-    final filledButtonTheme = Theme.of(context).extension<FilledButtonTheme>()!;
+    final filledButtonTheme =
+        Theme.of(context).extension<GradientButtonTheme>()!;
     return Stack(
       children: [
         CustomScrollView(
@@ -92,7 +93,7 @@ class _CartItemsViewState extends State<CartItemsView> {
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: listViewTheme.padding,
-            child: FilledButton(
+            child: GradientButton(
               label: 'To order $uiCartPrice',
               onPress: () {
                 if (cartPrice > 0) {

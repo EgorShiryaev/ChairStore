@@ -32,7 +32,7 @@ class ErrorMask extends StatelessWidget {
             SizedBox(
               height: pageTheme.paddingBetweenElements,
             ),
-            FilledButton(label: 'Retry', onPress: retry)
+            GradientButton(label: 'Retry', onPress: retry)
           ],
         ),
       ),

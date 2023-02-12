@@ -62,7 +62,7 @@ class _DetailsBottomSheetState extends State<DetailsBottomSheet> {
                   SizedBox(height: paddingBetweenText),
                   Text(widget.product.description, style: textTheme.bodyMedium),
                   SizedBox(height: pageTheme.paddingBetweenElements),
-                  FilledButton(
+                  GradientButton(
                     label: 'Add to cart',
                     onPress: addProductToCart,
                   )

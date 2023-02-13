@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+import 'configs.dart';
 import 'logic/datasources/auth_remote_datasource.dart';
 import 'logic/datasources/cart_local_datasource.dart';
 import 'logic/datasources/products_remote_datasource.dart';
@@ -14,6 +16,7 @@ import 'logic/repositories/products_repository.dart';
 import 'ui/cubits/auth_cubit/auth_cubit.dart';
 import 'ui/cubits/cart_cubit/cart_cubit.dart';
 import 'ui/cubits/catalog_cubit.dart/catalog_cubit.dart';
+import 'ui/cubits/delivery_address_cubit/delivery_address_cubit.dart';
 import 'ui/cubits/recommended_products_cubit.dart/recommended_products_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -24,6 +27,7 @@ Future<void> setupDependency() async {
   _recommendedProductsCubitDependency(internetConnectionChecker);
   _catalogCubitDependency();
   _cartCubitDependency();
+  _deliveryAddressCubitDependency();
 }
 
 void _authCubitDependency(InternetConnectionChecker internetConnectionChecker) {
@@ -48,7 +52,8 @@ void _authCubitDependency(InternetConnectionChecker internetConnectionChecker) {
 }
 
 void _recommendedProductsCubitDependency(
-    InternetConnectionChecker internetConnectionChecker,) {
+  InternetConnectionChecker internetConnectionChecker,
+) {
   getIt.registerFactory<RecommendedProductsCibit>(
     () => RecommendedProductsCibit(repository: getIt()),
   );
@@ -84,5 +89,11 @@ void _cartCubitDependency() {
 
   getIt.registerLazySingleton<CartLocalDatasource>(
     CartLocalDatasource.new,
+  );
+}
+
+void _deliveryAddressCubitDependency() {
+  getIt.registerFactory<DeliveryAddressCubit>(
+    DeliveryAddressCubit.new,
   );
 }

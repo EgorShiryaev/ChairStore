@@ -14,29 +14,40 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final detailsPageTheme = Theme.of(context).extension<DetailsPageTheme>()!;
-    return WillPopScope(
-      onWillPop: () async {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        return true;
-      },
-      child: Scaffold(
-        backgroundColor: detailsPageTheme.backgroundColor,
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              tooltip: 'Cart',
-              onPressed: () {
-                Navigator.pop(context, true);
-              },
-              icon: const AssetIcon(iconName: 'cart'),
-            ),
-          ],
+    return ScaffoldMessenger(
+      key: scaffoldMessengerKey,
+      child: WillPopScope(
+        onWillPop: () async {
+          scaffoldMessengerKey.currentState!.clearSnackBars();
+          return true;
+        },
+        child: Scaffold(
           backgroundColor: detailsPageTheme.backgroundColor,
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                tooltip: 'Cart',
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+                icon: const AssetIcon(iconName: 'cart'),
+              ),
+            ],
+            backgroundColor: detailsPageTheme.backgroundColor,
+          ),
+          body: const DetailsPageBody(),
         ),
-        body: const DetailsPageBody(),
       ),
     );
   }

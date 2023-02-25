@@ -41,8 +41,8 @@ class _OrderPageState extends State<OrderPage> {
     return BlocProvider<DeliveryAddressCubit>(
       create: (context) => getIt<DeliveryAddressCubit>(),
       child: WillPopScope(
-        onWillPop: () {
-          return Future.value(false);
+        onWillPop: () async {
+          return false;
         },
         child: Scaffold(
           body: SafeArea(

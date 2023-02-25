@@ -31,8 +31,8 @@ class _DeliveryMapState extends State<DeliveryMap> {
         }
       },
       child: GoogleMap(
-        myLocationButtonEnabled: false,
-        myLocationEnabled: false,
+        myLocationButtonEnabled: true,
+        myLocationEnabled: true,
         initialCameraPosition: const CameraPosition(
           target: STORE_LOCATION,
           zoom: 15,

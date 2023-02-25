@@ -7,13 +7,14 @@ import 'app.dart';
 import 'dependency_injection.dart';
 
 void main() async {
-  await Hive.initFlutter();
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await setupDependency();
-
-  await Firebase.initializeApp();
+  await Future.wait([
+    Hive.initFlutter(),
+    setupDependency(),
+    Firebase.initializeApp(),
+  ]);
 
   runApp(const App());
 }

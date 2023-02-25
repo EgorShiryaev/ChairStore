@@ -48,12 +48,6 @@ class _DeliveryMapState extends State<DeliveryMap> {
               onDrag: BlocProvider.of<DeliveryAddressCubit>(context)
                   .selectDeliveryAddress,
             )
-          else
-            const Marker(
-              markerId: MarkerId('store'),
-              position: STORE_LOCATION,
-              draggable: false,
-            ),
         },
       ),
     );

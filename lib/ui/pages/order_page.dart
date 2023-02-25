@@ -40,53 +40,56 @@ class _OrderPageState extends State<OrderPage> {
     final pageTheme = Theme.of(context).extension<PageTheme>()!;
     return BlocProvider<DeliveryAddressCubit>(
       create: (context) => getIt<DeliveryAddressCubit>(),
-      child: Scaffold(
-        appBar: AppBar(),
-        body: SafeArea(
-          child: Padding(
-            padding: pageTheme.padding.copyWith(top: 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: pageTheme.paddingBetweenElements),
-                Text(
-                  'You order is accepted',
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                SizedBox(height: pageTheme.paddingBetweenElements),
-                Text(
-                  'Choose an address for delivery',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                SizedBox(height: pageTheme.paddingBetweenElements),
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: const DeliveryMap(),
+      child: WillPopScope(
+        onWillPop: () {
+          return Future.value(false);
+        },
+        child: Scaffold(
+          // appBar: AppBar(
+          //   automaticallyImplyLeading: false,
+          // ),
+          body: SafeArea(
+            child: Padding(
+              padding: pageTheme.padding.copyWith(top: 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: pageTheme.paddingBetweenElements),
+                  Text(
+                    'You order is accepted',
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
-                ),
-                SizedBox(height: pageTheme.paddingBetweenElements),
-                BlocConsumer<DeliveryAddressCubit, DeliveryAddressState>(
-                  listener: (context, state) {
-                    if (state is SelectedDeliveryAddressState) {
-                      setPrice(state.deliveryPrice);
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is SelectedDeliveryAddressState) {
-                      return GradientButton(
-                        label: 'Order delivery $uiPrice',
-                        onPress: goBack,
-                      );
-                    }
-                    return GradientButton(
-                      label: 'I will pick up the order myself',
-                      onPress: goBack,
-                    );
-                  },
-                ),
-                SizedBox(height: pageTheme.paddingBetweenElements),
-              ],
+                  SizedBox(height: pageTheme.paddingBetweenElements),
+                  Text(
+                    'Choose an address for delivery',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  SizedBox(height: pageTheme.paddingBetweenElements),
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: const DeliveryMap(),
+                    ),
+                  ),
+                  SizedBox(height: pageTheme.paddingBetweenElements),
+                  BlocConsumer<DeliveryAddressCubit, DeliveryAddressState>(
+                    listener: (context, state) {
+                      if (state is SelectedDeliveryAddressState) {
+                        setPrice(state.deliveryPrice);
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is SelectedDeliveryAddressState) {
+                        return GradientButton(
+                          label: 'Order delivery $uiPrice',
+                          onPress: goBack,
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../logic/models/order_history_item.dart';
 import '../../../cubits/order_history_cubit/order_history_cubit.dart';
+import '../../../themes/app_theme.dart';
 import '../../../themes/list_view_theme.dart';
 import '../../../themes/page_theme.dart';
 import '../../page_title.dart';
@@ -33,7 +34,7 @@ class _HistoryItemsViewState extends State<HistoryItemsView> {
         slivers: [
           SliverPadding(
             padding: pageTheme.padding
-                .copyWith(bottom: listViewTheme.padding.bottom, top: 0),
+                .copyWith(bottom: safeAreaPadding.bottom, top: 0),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {

@@ -34,9 +34,12 @@ class HistoryItemCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                uiDateTime,
-                style: historyItemCardTheme.dateTimeTextStyle,
+              Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Text(
+                  uiDateTime,
+                  style: historyItemCardTheme.dateTimeTextStyle,
+                ),
               ),
               const SizedBox(height: 4),
               ...List.generate(historyItem.items.length, (index) {
@@ -47,9 +50,12 @@ class HistoryItemCard extends StatelessWidget {
               const SizedBox(height: 4),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Text(
-                  historyItem.priceForUi,
-                  style: historyItemCardTheme.priceTextStyle,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: Text(
+                    historyItem.priceForUi,
+                    style: historyItemCardTheme.priceTextStyle,
+                  ),
                 ),
               )
             ],

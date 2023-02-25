@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/exceptions/exception_with_message_exception.dart';
@@ -18,7 +20,8 @@ class CatalogCubit extends Cubit<CatalogState> {
     _lastAllProducts = [...newAllProducts];
   }
 
-  void _errorHandler(error) {
+  // ignore: prefer_void_to_null
+  FutureOr<Null> _errorHandler(error) {
     emit(
       ErrorCatalogState(
         message: (error as ExceptionWithMessage).message,

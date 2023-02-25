@@ -4,9 +4,8 @@ import '../../core/exceptions/index.dart';
 import '../../core/exceptions/no_internet_connection_exception.dart';
 import '../datasources/auth_remote_datasource.dart';
 import '../datasources/secure_local_datasource.dart';
-import '../models/user_data.dart';
-
-String? userEmail;
+import '../models/auth_data.dart';
+import '../utils/user_utils.dart';
 
 class AuthRepository {
   final AuthRemoteDatasource _authRemoteDatasource;
@@ -18,7 +17,7 @@ class AuthRepository {
   })  : _authRemoteDatasource = authRemoteDatasource,
         _secureLocalDatasource = secureLocalDatasource;
 
-  ExceptionWithMessage _exceptionHandler(Object exception, {UserData? user}) {
+  ExceptionWithMessage _exceptionHandler(Object exception, {AuthData? user}) {
     if (exception is FirebaseAuthException) {
       switch (exception.code) {
         case 'invalid-email':
@@ -45,20 +44,20 @@ class AuthRepository {
     return TechnicalException(user: user);
   }
 
-  Future<void> login(UserData data) async {
+  Future<void> login(AuthData data) async {
     try {
       final credential = await _authRemoteDatasource.login(data);
-      userEmail = credential.user!.email;
+      setUser(credential.user!.uid, credential.user!.email);
       await _secureLocalDatasource.saveUserData(data);
     } catch (e) {
       throw _exceptionHandler(e);
     }
   }
 
-  Future<void> signUp(UserData data) async {
+  Future<void> signUp(AuthData data) async {
     try {
       final credential = await _authRemoteDatasource.signUp(data);
-      userEmail = credential.user!.email;
+      setUser(credential.user!.uid, credential.user!.email);
       await _secureLocalDatasource.saveUserData(data);
     } catch (e) {
       throw _exceptionHandler(e);
@@ -68,7 +67,7 @@ class AuthRepository {
   Future<void> logout() async {
     try {
       await _authRemoteDatasource.logout();
-      userEmail = null;
+      setUser(null, null);
       await _secureLocalDatasource.deleteUser();
     } catch (e) {
       throw _exceptionHandler(e);
@@ -81,7 +80,7 @@ class AuthRepository {
 
       if (user != null) {
         final credential = await _authRemoteDatasource.login(user);
-        userEmail = credential.user!.email;
+        setUser(credential.user!.uid, credential.user!.email);
       } else {
         throw NoAuthDataException();
       }

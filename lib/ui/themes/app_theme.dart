@@ -8,6 +8,8 @@ import 'details_page_theme.dart';
 import 'form_theme.dart';
 import 'grdient_button_theme.dart';
 import 'grid_theme.dart';
+import 'history_item_card_theme.dart';
+import 'history_item_product_theme.dart';
 import 'list_view_theme.dart';
 import 'page_theme.dart';
 import 'product_card_theme.dart';
@@ -90,16 +92,6 @@ class AppTheme {
       color: Color(0x66171717),
       letterSpacing: _defaultLetterSpacing,
     ),
-    //  displayLarge = displayLarge ?? headline1,
-    //  displaySmall = displaySmall ?? headline3,
-    //  headlineLarge =  headlineLarge ?? headline4,
-    //  headlineSmall = headlineSmall ?? headline5,
-    //  titleLarge = titleLarge ?? headline6,
-    //  titleSmall = titleSmall ?? subtitle2,
-    //  bodyLarge = bodyLarge ?? bodyText1,
-    //  bodySmall = bodySmall ?? caption,
-    //  labelLarge = labelLarge ?? button,
-    //  labelSmall = labelSmall ?? overline;
   );
 
   static const _defaultPadding = 16.0;
@@ -254,7 +246,18 @@ class AppTheme {
         paddingBetweensElements: 8,
         imageSize: 100,
         padding: const EdgeInsets.symmetric(vertical: 12),
-      )
+      ),
+      HistoryItemCardTheme(
+        backgroundColor: const Color(0xffF3F6F8),
+        radius: BorderRadius.circular(20),
+        dateTimeTextStyle: textTheme.headlineMedium!,
+        priceTextStyle: textTheme.headlineSmall!,
+        productTheme: HistoryItemProductTheme(
+          imageSize: 80,
+          titleStyle: textTheme.titleMedium!,
+          bodyStyle: textTheme.bodyMedium!,
+        ),
+      ),
     ],
   );
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const STORE_LOCATION = LatLng(58.614683, 49.594303);

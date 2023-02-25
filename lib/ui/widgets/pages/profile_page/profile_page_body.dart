@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../logic/repositories/auth_repository.dart';
+import '../../../../user.dart';
+import '../../../cubits/order_history_cubit/order_history_cubit.dart';
+import '../../../pages/order_history_page.dart';
 import '../../../themes/list_view_theme.dart';
 import '../../asset_icon.dart';
+import '../../gradient_button.dart';
 
-class ProfilePageBody extends StatelessWidget {
+class ProfilePageBody extends StatefulWidget {
   const ProfilePageBody({super.key});
+
+  @override
+  State<ProfilePageBody> createState() => _ProfilePageBodyState();
+}
+
+class _ProfilePageBodyState extends State<ProfilePageBody> {
+  void navigateToOrderHistoryPage() {
+    BlocProvider.of<OrderHistoryCubit>(context).loadAll();
+    Navigator.pushNamed(context, OrderHistoryPage.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +38,20 @@ class ProfilePageBody extends StatelessWidget {
               color: Theme.of(context).colorScheme.tertiary,
               size: iconSize,
             ),
-            if (userEmail != null)
+            if (user.email != null)
               Center(
                 child: Padding(
                   padding: EdgeInsets.only(
                     top: listViewTheme.paddingBetweenElements,
                   ),
-                  child: Text(userEmail!, style: textTheme.headlineMedium),
+                  child: Text(user.email!, style: textTheme.headlineMedium),
                 ),
-              )
+              ),
+            SizedBox(height: listViewTheme.paddingBetweenElements),
+            GradientButton(
+              label: 'Order history',
+              onPress: navigateToOrderHistoryPage,
+            ),
           ],
         );
       },

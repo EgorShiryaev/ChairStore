@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/price_ui_convector.dart';
 import '../../../../logic/models/cart_item.dart';
+import '../../../../logic/utils/order_history_item_utils.dart';
 import '../../../cubits/cart_cubit/cart_cubit.dart';
+import '../../../cubits/order_history_cubit/order_history_cubit.dart';
 import '../../../pages/order_page.dart';
 import '../../../themes/grdient_button_theme.dart';
 import '../../../themes/list_view_theme.dart';
@@ -22,21 +24,27 @@ class CartItemsView extends StatefulWidget {
 }
 
 class _CartItemsViewState extends State<CartItemsView> {
-  void changeSelectedStatus(CartItem item, bool? newValue) {
-    setState(() {});
-    item.changeIsSelected();
+  void changeSelectedStatus(CartItem item, {bool? newValue}) {
+    setState(() {
+      item.changeIsSelected();
+    });
+
     BlocProvider.of<CartCubit>(context).update(item);
   }
 
   void incrementQuantity(CartItem item) {
-    setState(() {});
-    item.incrementQuantity();
+    setState(() {
+      item.incrementQuantity();
+    });
+
     BlocProvider.of<CartCubit>(context).update(item);
   }
 
   void decrementQuantity(CartItem item) {
-    setState(() {});
-    item.decrementQuantity();
+    setState(() {
+      item.decrementQuantity();
+    });
+
     BlocProvider.of<CartCubit>(context).update(item);
   }
 
@@ -44,11 +52,22 @@ class _CartItemsViewState extends State<CartItemsView> {
     var price = 0.0;
     for (var i = 0; i < widget.items.length; i++) {
       final item = widget.items[i];
-      if (item.isSelected && item.quantity > 0) {
+      if (item.isSelected) {
         price += item.quantity * item.product.price;
       }
     }
     return price;
+  }
+
+  void toOrder(double cartPrice) {
+    if (cartPrice > 0) {
+      Navigator.pushNamed(context, OrderPage.routeName);
+      BlocProvider.of<CartCubit>(context).deleteOfferedItems();
+
+      final orderHistory = convertToOrderHistoryItem(widget.items);
+
+      BlocProvider.of<OrderHistoryCubit>(context).add(orderHistory);
+    }
   }
 
   @override
@@ -73,7 +92,7 @@ class _CartItemsViewState extends State<CartItemsView> {
                     return CartItemCard(
                       item: item,
                       changeSelectedStatus: (newValue) {
-                        changeSelectedStatus(item, newValue);
+                        changeSelectedStatus(item, newValue: newValue);
                       },
                       decrementQuantity: () {
                         decrementQuantity(item);
@@ -95,12 +114,7 @@ class _CartItemsViewState extends State<CartItemsView> {
             padding: listViewTheme.padding,
             child: GradientButton(
               label: 'To order $uiCartPrice',
-              onPress: () {
-                if (cartPrice > 0) {
-                  Navigator.pushNamed(context, OrderPage.routeName);
-                  BlocProvider.of<CartCubit>(context).deleteOfferedItems();
-                }
-              },
+              onPress: () => toOrder(cartPrice),
             ),
           ),
         )

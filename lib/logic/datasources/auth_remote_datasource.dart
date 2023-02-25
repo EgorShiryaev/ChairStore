@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../core/exceptions/no_internet_connection_exception.dart';
-import '../models/user_data.dart';
+import '../models/auth_data.dart';
 
 class AuthRemoteDatasource {
   final FirebaseAuth _service;
@@ -15,7 +15,7 @@ class AuthRemoteDatasource {
   })  : _service = service,
         _internetConnectionChecker = internetConnectionChecker;
 
-  Future<UserCredential> login(UserData data) async {
+  Future<UserCredential> login(AuthData data) async {
     final deviceIsConnected = await _internetConnectionChecker.hasConnection;
 
     if (!deviceIsConnected) {
@@ -30,7 +30,7 @@ class AuthRemoteDatasource {
     );
   }
 
-  Future<UserCredential> signUp(UserData data) async {
+  Future<UserCredential> signUp(AuthData data) async {
     final deviceIsConnected = await _internetConnectionChecker.hasConnection;
 
     if (!deviceIsConnected) {

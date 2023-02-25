@@ -31,7 +31,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: null,
         actions: [
           IconButton(
             tooltip: 'Logout',

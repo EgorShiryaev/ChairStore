@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/exceptions/index.dart';
-import '../../../logic/models/user_data.dart';
+import '../../../logic/models/auth_data.dart';
 import '../../../logic/repositories/auth_repository.dart';
 import 'auth_state.dart';
 
@@ -17,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> login(String email, String password) async {
     emit(LoadingAuthState());
 
-    final data = UserData(email: email, password: password);
+    final data = AuthData(email: email, password: password);
 
     await _repository.login(data).then((_) {
       emit(SuccessAuthState());
@@ -34,7 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signUp(String email, String password) async {
     emit(LoadingAuthState());
 
-    final data = UserData(email: email, password: password);
+    final data = AuthData(email: email, password: password);
 
     await _repository.signUp(data).then((_) {
       emit(SuccessAuthState());

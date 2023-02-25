@@ -45,9 +45,6 @@ class _OrderPageState extends State<OrderPage> {
           return Future.value(false);
         },
         child: Scaffold(
-          // appBar: AppBar(
-          //   automaticallyImplyLeading: false,
-          // ),
           body: SafeArea(
             child: Padding(
               padding: pageTheme.padding.copyWith(top: 0),
